@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { allRules, forumsFile, feesFile, limitationFile } from "@/lib/rules";
+import { allRules, forumsFile, feesFile, limitationFile, natureLabel } from "@/lib/rules";
 import { StatusBadge } from "@/components/RuleBits";
 import { formatDate } from "@/lib/dates/calendar";
 
@@ -7,7 +7,7 @@ export const metadata: Metadata = { title: "Sources & last verified" };
 
 function valueText(v: unknown, unit: string): string {
   if (v === null) return "—";
-  if (Array.isArray(v)) return v.join(", ");
+  if (Array.isArray(v)) return v.map(natureLabel).join(", ");
   if (typeof v === "boolean") return v ? "Yes" : "No";
   if (typeof v === "number" && unit === "SGD") return `S$${v.toLocaleString("en-SG")}`;
   if (typeof v === "number") return `${v} ${unit}`;
