@@ -13,7 +13,7 @@ export const metadata: Metadata = {
 export const viewport: Viewport = { themeColor: "#ffd6e0" };
 
 const NAV = [
-  { href: "/forum-finder", label: "Forum Finder" },
+  { href: "/forum-finder", label: "Forums" },
   { href: "/deadlines", label: "Deadlines" },
   { href: "/sources", label: "Sources" },
 ];
@@ -23,15 +23,15 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="en-SG" className="h-full antialiased">
       <body className="flex min-h-full flex-col">
         <header className="no-print sticky top-0 z-20 border-b border-line bg-cream/85 backdrop-blur">
-          <nav className="mx-auto flex max-w-5xl items-center gap-2 px-4 py-3">
-            <Link href="/" className="mr-auto font-display text-xl font-semibold text-plum">
-              Which Court? <span aria-hidden="true">⚖️</span>
+          <nav className="mx-auto flex max-w-5xl items-center gap-1 px-4 py-3 sm:gap-2">
+            <Link href="/" className="mr-auto whitespace-nowrap font-display text-lg font-semibold text-plum sm:text-xl">
+              Which Court?<span aria-hidden="true" className="hidden sm:inline"> ⚖️</span>
             </Link>
             {NAV.map((n) => (
               <Link
                 key={n.href}
                 href={n.href}
-                className="rounded-full px-3 py-1.5 text-sm font-semibold text-ink-soft hover:bg-lavender hover:text-plum"
+                className="whitespace-nowrap rounded-full px-2 py-1.5 text-xs font-semibold text-ink-soft hover:bg-lavender hover:text-plum sm:px-3 sm:text-sm"
               >
                 {n.label}
               </Link>
