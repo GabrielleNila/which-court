@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { Emblem } from "@/components/Emblem";
 import { allRules } from "@/lib/rules";
+import { SHOW_RULE_STATUS } from "@/lib/config";
 
 export default function Home() {
   const rules = allRules();
@@ -35,7 +36,7 @@ export default function Home() {
           <p className="mt-1 text-ink-soft">
             Map the next ROC 2021 steps from a key date, with the working shown for every deadline.
           </p>
-          <span className="mt-3 inline-block font-semibold text-navy">Coming in Phase 2</span>
+          <span className="mt-3 inline-block font-semibold text-navy group-hover:underline">Map the deadlines →</span>
         </Link>
       </section>
 
@@ -45,7 +46,7 @@ export default function Home() {
           <Link href="/sources" className="font-semibold text-navy underline">
             See all {rules.length} rules
           </Link>
-          {unverified > 0 && <> ({unverified} still marked UNVERIFIED)</>}.
+          {SHOW_RULE_STATUS && unverified > 0 && <> ({unverified} still marked UNVERIFIED)</>}.
         </p>
       </section>
     </div>

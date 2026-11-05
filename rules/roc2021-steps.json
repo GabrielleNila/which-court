@@ -1,0 +1,371 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "2026-11-05",
+  "description": "Procedural steps and deadlines for originating claims under the Rules of Court 2021. The Deadline Navigator reads only from this file and time-computation.json.",
+  "scopeNote": "Covers originating claims in the General Division of the High Court and the State Courts. It does not cover originating applications, interim applications, Registrar's appeals or enforcement.",
+  "stages": [
+    {
+      "id": "oc_issued",
+      "label": "Originating Claim issued",
+      "dateLabel": "Date the Originating Claim was issued",
+      "description": "The Court has issued the claimant's Originating Claim, and it has not yet been served.",
+      "timeOfService": false
+    },
+    {
+      "id": "oc_served_general",
+      "label": "Originating Claim (endorsed generally) served",
+      "dateLabel": "Date the Originating Claim was served",
+      "description": "The Originating Claim was served with only a concise description of the claim, without a Statement of Claim.",
+      "timeOfService": true
+    },
+    {
+      "id": "soc_served",
+      "label": "Statement of Claim served",
+      "dateLabel": "Date the Statement of Claim was served on the defendant",
+      "description": "The Originating Claim with a Statement of Claim (or a Statement of Claim served later) has been served on the defendant.",
+      "timeOfService": true
+    },
+    {
+      "id": "defence_served",
+      "label": "Defence (and Counterclaim) served",
+      "dateLabel": "Date the Defence and Counterclaim was served on the claimant",
+      "description": "The defendant has served its Defence, with or without a Counterclaim.",
+      "timeOfService": true
+    },
+    {
+      "id": "judgment",
+      "label": "Judgment obtained after trial",
+      "dateLabel": "Date of the judgment",
+      "description": "Judgment has been given after the trial of an originating claim.",
+      "timeOfService": false
+    }
+  ],
+  "steps": [
+    {
+      "id": "serve_oc",
+      "stage": "oc_issued",
+      "actor": "claimant",
+      "kind": "deadline",
+      "title": "Take reasonable steps to serve the Originating Claim",
+      "rule": {
+        "id": "roc.o6r5.serveWithin",
+        "title": "Reasonable steps to serve within 14 days after issue",
+        "value": 14,
+        "unit": "days",
+        "source": { "instrument": "Rules of Court 2021", "provision": "O 6 r 5(6)", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+        "lastVerified": "2026-11-05",
+        "status": "SOURCE_CHECKED",
+        "checkedBy": "Claude",
+        "verifiedBy": null,
+        "explanation": "If the Originating Claim is to be served in Singapore, reasonable steps to serve it must be made as soon as possible and in any event within 14 days after it is issued.",
+        "learnMore": "ROC 2021 expects the claimant to move quickly, in line with its Ideals of expeditious and cost-effective proceedings. This is a duty to take reasonable steps, so the claim is not automatically invalid if service is not completed within 14 days, but the Court can take the delay into account at the case conference."
+      },
+      "ruleOutOfSingapore": {
+        "id": "roc.o6r5.serveWithinOut",
+        "title": "Reasonable steps to serve out of Singapore within 28 days after issue",
+        "value": 28,
+        "unit": "days",
+        "source": { "instrument": "Rules of Court 2021", "provision": "O 6 r 5(7)", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+        "lastVerified": "2026-11-05",
+        "status": "SOURCE_CHECKED",
+        "checkedBy": "Claude",
+        "verifiedBy": null,
+        "explanation": "If the Originating Claim is to be served out of Singapore, reasonable steps to serve must be made within 28 days after it is issued."
+      }
+    },
+    {
+      "id": "oc_validity",
+      "stage": "oc_issued",
+      "actor": "claimant",
+      "kind": "deadline",
+      "countFrom": "inclusive",
+      "title": "Originating Claim stops being valid for service",
+      "rule": {
+        "id": "roc.o6r3.validity",
+        "title": "Valid for service for 3 months beginning with the date of issue",
+        "value": 3,
+        "unit": "months",
+        "source": { "instrument": "Rules of Court 2021", "provision": "O 6 r 3(1)(b)", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+        "lastVerified": "2026-11-05",
+        "status": "SOURCE_CHECKED",
+        "checkedBy": "Claude",
+        "verifiedBy": null,
+        "explanation": "An Originating Claim to be served in Singapore is valid for service for 3 months beginning with the date of its issue. The Court may extend validity, usually only twice and by up to 3 months each time (O 6 r 3(4)).",
+        "caveats": ["'Beginning with' counts the issue date as day one, so this app shows the last day as one day before the same date three months later."]
+      },
+      "ruleOutOfSingapore": {
+        "id": "roc.o6r3.validityOut",
+        "title": "Valid for service out of Singapore for 6 months beginning with the date of issue",
+        "value": 6,
+        "unit": "months",
+        "source": { "instrument": "Rules of Court 2021", "provision": "O 6 r 3(1)(a)", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+        "lastVerified": "2026-11-05",
+        "status": "SOURCE_CHECKED",
+        "checkedBy": "Claude",
+        "verifiedBy": null,
+        "explanation": "An Originating Claim to be served out of Singapore is valid for 6 months beginning with the date of its issue."
+      }
+    },
+    {
+      "id": "case_conference",
+      "stage": "oc_issued",
+      "actor": "court",
+      "kind": "expected",
+      "title": "First case conference",
+      "rule": {
+        "id": "roc.o9r1.caseConference",
+        "title": "Case conference 8 weeks after issue",
+        "value": 8,
+        "unit": "weeks",
+        "source": { "instrument": "Rules of Court 2021", "provision": "O 9 r 1(1)(a)", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+        "lastVerified": "2026-11-05",
+        "status": "SOURCE_CHECKED",
+        "checkedBy": "Claude",
+        "verifiedBy": null,
+        "explanation": "Where the defendant is to be served in Singapore, a case conference is to be held 8 weeks after the Originating Claim is issued. The Court may hold it earlier or later (O 9 r 1(2)), so check the actual date the Court fixes.",
+        "learnMore": "At the case conference the Court takes control of the timelines and gives directions (O 9 r 2). If no party attends, or the claimant is absent, the Court may dismiss the action. If the defendant is absent, the Court may give judgment for the claimant on proof of service (O 9 r 4)."
+      },
+      "ruleOutOfSingapore": {
+        "id": "roc.o9r1.caseConferenceOut",
+        "title": "Case conference 12 weeks after issue (service out of Singapore)",
+        "value": 12,
+        "unit": "weeks",
+        "source": { "instrument": "Rules of Court 2021", "provision": "O 9 r 1(1)(b)", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+        "lastVerified": "2026-11-05",
+        "status": "SOURCE_CHECKED",
+        "checkedBy": "Claude",
+        "verifiedBy": null,
+        "explanation": "Where the Originating Claim is to be served out of Singapore, the case conference is to be held 12 weeks after issue."
+      }
+    },
+    {
+      "id": "serve_soc",
+      "stage": "oc_served_general",
+      "actor": "claimant",
+      "kind": "deadline",
+      "title": "Serve the Statement of Claim",
+      "rule": {
+        "id": "roc.o6r5.socAfterGeneral",
+        "title": "Statement of Claim within 14 days after a generally endorsed Originating Claim is served",
+        "value": 14,
+        "unit": "days",
+        "source": { "instrument": "Rules of Court 2021", "provision": "O 6 r 5(5)", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+        "lastVerified": "2026-11-05",
+        "status": "SOURCE_CHECKED",
+        "checkedBy": "Claude",
+        "verifiedBy": null,
+        "explanation": "Where the Originating Claim is endorsed generally, a Statement of Claim must be served within 14 days after the Originating Claim has been served.",
+        "learnMore": "An Originating Claim may be endorsed generally (with only a concise description) except in a special case only if the limitation period will expire within 14 days after issue (O 6 r 5(4)). The defendant's deadlines run from service of the Statement of Claim, not the Originating Claim."
+      }
+    },
+    {
+      "id": "noic",
+      "stage": "soc_served",
+      "actor": "defendant",
+      "kind": "deadline",
+      "title": "File and serve a Notice of Intention to Contest or Not Contest",
+      "rule": {
+        "id": "roc.o6r6.noic",
+        "title": "Notice of intention to contest within 14 days after the Statement of Claim is served",
+        "value": 14,
+        "unit": "days",
+        "source": { "instrument": "Rules of Court 2021", "provision": "O 6 r 6(1)", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+        "lastVerified": "2026-11-05",
+        "status": "SOURCE_CHECKED",
+        "checkedBy": "Claude",
+        "verifiedBy": null,
+        "explanation": "A defendant served in Singapore must file and serve a notice of intention to contest or not contest (Form 10) within 14 days after the Statement of Claim is served.",
+        "learnMore": "The notice tells the claimant and the Court whether the defendant will defend. Filing it is not a submission to jurisdiction and does not waive any irregular service (O 6 r 6(4)). It replaced the old 'memorandum of appearance' under the Rules of Court 2014."
+      },
+      "ruleOutOfSingapore": {
+        "id": "roc.o6r6.noicOut",
+        "title": "Notice of intention to contest within 21 days (served out of Singapore)",
+        "value": 21,
+        "unit": "days",
+        "source": { "instrument": "Rules of Court 2021", "provision": "O 6 r 6(2)", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+        "lastVerified": "2026-11-05",
+        "status": "SOURCE_CHECKED",
+        "checkedBy": "Claude",
+        "verifiedBy": null,
+        "explanation": "A defendant served out of Singapore has 21 days after the Statement of Claim is served."
+      }
+    },
+    {
+      "id": "dj_noic",
+      "stage": "soc_served",
+      "actor": "claimant",
+      "kind": "available",
+      "afterStep": "noic",
+      "title": "Default judgment available if no notice is filed",
+      "rule": {
+        "id": "roc.o6r6.defaultJudgment",
+        "title": "Judgment in default of a notice of intention to contest",
+        "value": true,
+        "unit": "boolean",
+        "source": { "instrument": "Rules of Court 2021", "provision": "O 6 r 6(5)–(6)", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+        "lastVerified": "2026-11-05",
+        "status": "SOURCE_CHECKED",
+        "checkedBy": "Claude",
+        "verifiedBy": null,
+        "explanation": "If the defendant does not file and serve the notice in time, or says it will not contest, the claimant may apply for judgment (Form 11) and must file a memorandum of service (Form 12).",
+        "learnMore": "Default judgment is a judgment given without a trial because the defendant did not respond in time. The Court may award interest at 5.33% a year from the date of the originating process (O 6 r 6(7)). A defendant can apply to set it aside."
+      }
+    },
+    {
+      "id": "defence",
+      "stage": "soc_served",
+      "actor": "defendant",
+      "kind": "deadline",
+      "title": "File and serve the Defence (and any Counterclaim)",
+      "rule": {
+        "id": "roc.o6r7.defence",
+        "title": "Defence within 21 days after the Statement of Claim is served",
+        "value": 21,
+        "unit": "days",
+        "source": { "instrument": "Rules of Court 2021", "provision": "O 6 r 7(1); O 6 r 8(1)", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+        "lastVerified": "2026-11-05",
+        "status": "SOURCE_CHECKED",
+        "checkedBy": "Claude",
+        "verifiedBy": null,
+        "explanation": "A defendant served in Singapore must file and serve a Defence (Form 13) within 21 days after the Statement of Claim is served. Any Counterclaim must be filed and served with the Defence.",
+        "learnMore": "If the defendant challenges jurisdiction (for example, because of an arbitration agreement), it may file a Defence stating only that ground instead of a Defence on the merits (O 6 r 7(4)). That is not a submission to jurisdiction. The time can be extended once by written consent by up to 14 days (O 3 r 4(3))."
+      },
+      "ruleOutOfSingapore": {
+        "id": "roc.o6r7.defenceOut",
+        "title": "Defence within 5 weeks (served out of Singapore)",
+        "value": 5,
+        "unit": "weeks",
+        "source": { "instrument": "Rules of Court 2021", "provision": "O 6 r 7(2)", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+        "lastVerified": "2026-11-05",
+        "status": "SOURCE_CHECKED",
+        "checkedBy": "Claude",
+        "verifiedBy": null,
+        "explanation": "A defendant served out of Singapore has 5 weeks after the Statement of Claim is served to file and serve a Defence."
+      }
+    },
+    {
+      "id": "dj_defence",
+      "stage": "soc_served",
+      "actor": "claimant",
+      "kind": "available",
+      "afterStep": "defence",
+      "title": "Default judgment available if no Defence is filed",
+      "rule": {
+        "id": "roc.o6r7.defaultJudgment",
+        "title": "Judgment in default of defence",
+        "value": true,
+        "unit": "boolean",
+        "source": { "instrument": "Rules of Court 2021", "provision": "O 6 r 7(7)", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+        "lastVerified": "2026-11-05",
+        "status": "SOURCE_CHECKED",
+        "checkedBy": "Claude",
+        "verifiedBy": null,
+        "explanation": "If the defendant fails to file and serve a Defence in time, the claimant may apply for judgment in default of defence (Form 14)."
+      }
+    },
+    {
+      "id": "defence_to_cc",
+      "stage": "defence_served",
+      "actor": "claimant",
+      "kind": "deadline",
+      "title": "File and serve the Defence to Counterclaim (if there is a Counterclaim)",
+      "rule": {
+        "id": "roc.o6r9.defenceToCounterclaim",
+        "title": "Defence to Counterclaim within 14 days after the Defence and Counterclaim is served",
+        "value": 14,
+        "unit": "days",
+        "source": { "instrument": "Rules of Court 2021", "provision": "O 6 r 9(1)", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+        "lastVerified": "2026-11-05",
+        "status": "SOURCE_CHECKED",
+        "checkedBy": "Claude",
+        "verifiedBy": null,
+        "explanation": "The claimant must file and serve a Defence to Counterclaim (Form 13) within 14 days after the Defence and Counterclaim is served. A Reply is not needed merely to deny the Defence.",
+        "learnMore": "Under ROC 2021 there is no automatic Reply. The claimant need not reply if it only wants to deny the defendant's assertions (O 6 r 9(1)). Any pleading after the Defence or Defence to Counterclaim needs the Court's approval at the case conference (O 6 r 10)."
+      }
+    },
+    {
+      "id": "dj_cc",
+      "stage": "defence_served",
+      "actor": "defendant",
+      "kind": "available",
+      "afterStep": "defence_to_cc",
+      "title": "Default judgment on the Counterclaim if no Defence to Counterclaim",
+      "rule": {
+        "id": "roc.o6r9.defaultJudgment",
+        "title": "Judgment in default of defence to counterclaim",
+        "value": true,
+        "unit": "boolean",
+        "source": { "instrument": "Rules of Court 2021", "provision": "O 6 r 9(3)", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+        "lastVerified": "2026-11-05",
+        "status": "SOURCE_CHECKED",
+        "checkedBy": "Claude",
+        "verifiedBy": null,
+        "explanation": "If the claimant fails to file and serve a Defence to Counterclaim in time, the defendant may apply for judgment in default on the Counterclaim (Form 14)."
+      }
+    },
+    {
+      "id": "further_pleadings",
+      "stage": "defence_served",
+      "actor": "both",
+      "kind": "info",
+      "title": "Further pleadings (such as a Reply) only with the Court's approval",
+      "rule": {
+        "id": "roc.o6r10.furtherPleadings",
+        "title": "Further pleadings need approval at the case conference",
+        "value": true,
+        "unit": "boolean",
+        "source": { "instrument": "Rules of Court 2021", "provision": "O 6 r 10", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+        "lastVerified": "2026-11-05",
+        "status": "SOURCE_CHECKED",
+        "checkedBy": "Claude",
+        "verifiedBy": null,
+        "explanation": "Parties must seek the Court's approval at the case conference to file any pleading beyond the Defence or Defence to Counterclaim. No further pleadings may be filed unless the Court orders otherwise."
+      }
+    },
+    {
+      "id": "appeal_state",
+      "stage": "judgment",
+      "court": "state",
+      "actor": "both",
+      "kind": "deadline",
+      "title": "File and serve a Notice of Appeal to the General Division",
+      "rule": {
+        "id": "roc.o19r14.appeal",
+        "title": "Notice of appeal within 14 days after the date of the judgment (MC or DC to General Division)",
+        "value": 14,
+        "unit": "days",
+        "source": { "instrument": "Rules of Court 2021", "provision": "O 19 r 14(1)", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+        "lastVerified": "2026-11-05",
+        "status": "SOURCE_CHECKED",
+        "checkedBy": "Claude",
+        "verifiedBy": null,
+        "explanation": "A party appealing to the General Division against a Magistrate's Court or District Court judgment after trial must file and serve a notice of appeal (Form 35) within 14 days after the date of the judgment. Where permission to appeal is needed, the application must be made within the same 14 days (O 19 r 15(1)).",
+        "caveats": ["Time does not start to run until the lower Court has dealt with all matters including costs, or 30 days after the other matters if costs are not decided by then (O 19 r 4). Enter the date that time starts to run."]
+      }
+    },
+    {
+      "id": "appeal_gd",
+      "stage": "judgment",
+      "court": "gd",
+      "actor": "both",
+      "kind": "deadline",
+      "title": "File and serve a Notice of Appeal to the Appellate Division or Court of Appeal",
+      "rule": {
+        "id": "roc.o19r25.appeal",
+        "title": "Notice of appeal within 28 days after the date of the General Division's judgment",
+        "value": 28,
+        "unit": "days",
+        "source": { "instrument": "Rules of Court 2021", "provision": "O 19 r 25(1)(a)", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+        "lastVerified": "2026-11-05",
+        "status": "SOURCE_CHECKED",
+        "checkedBy": "Claude",
+        "verifiedBy": null,
+        "explanation": "A party appealing against a judgment of the General Division must file and serve a notice of appeal (Form 35) within 28 days after the date of the judgment.",
+        "caveats": [
+          "Time does not start to run until the lower Court has dealt with all matters including costs, or 30 days after the other matters if costs are not decided by then (O 19 r 4). Enter the date that time starts to run.",
+          "If further arguments were requested under s 29B(2) of the Supreme Court of Judicature Act, the 28 days run from a different date (O 19 r 25(1)(b))."
+        ]
+      }
+    }
+  ]
+}

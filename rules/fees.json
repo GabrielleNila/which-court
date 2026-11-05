@@ -10,7 +10,11 @@
         "title": "SCT filing fee for a claim or counterclaim",
         "value": null,
         "unit": "SGD",
-        "source": { "instrument": "judiciary.gov.sg", "provision": "'How to file and serve a small claim': filing fees table", "url": "https://www.judiciary.gov.sg/civil/how-to-file-serve-small-claim" },
+        "source": {
+          "instrument": "judiciary.gov.sg",
+          "provision": "'How to file and serve a small claim': filing fees table",
+          "url": "https://www.judiciary.gov.sg/civil/how-to-file-serve-small-claim"
+        },
         "lastVerified": "2026-11-05",
         "status": "SOURCE_CHECKED",
         "checkedBy": "Claude",
@@ -18,9 +22,39 @@
         "explanation": "The fee depends on the claim amount and on whether the claimant is an individual or another entity (sole proprietorship, partnership, company or association). Filing fees are not refunded if you withdraw."
       },
       "bands": [
-        { "upTo": 5000, "individual": { "type": "flat", "amount": 10 }, "other": { "type": "flat", "amount": 50 } },
-        { "upTo": 10000, "individual": { "type": "flat", "amount": 20 }, "other": { "type": "flat", "amount": 100 } },
-        { "upTo": 30000, "individual": { "type": "percent", "amount": 1 }, "other": { "type": "percent", "amount": 3 } }
+        {
+          "upTo": 5000,
+          "individual": {
+            "type": "flat",
+            "amount": 10
+          },
+          "other": {
+            "type": "flat",
+            "amount": 50
+          }
+        },
+        {
+          "upTo": 10000,
+          "individual": {
+            "type": "flat",
+            "amount": 20
+          },
+          "other": {
+            "type": "flat",
+            "amount": 100
+          }
+        },
+        {
+          "upTo": 30000,
+          "individual": {
+            "type": "percent",
+            "amount": 1
+          },
+          "other": {
+            "type": "percent",
+            "amount": 3
+          }
+        }
       ]
     },
     {
@@ -30,7 +64,11 @@
         "title": "ECT filing fee",
         "value": null,
         "unit": "SGD",
-        "source": { "instrument": "judiciary.gov.sg", "provision": "Employment Claims Tribunals Guide", "url": "https://www.judiciary.gov.sg/docs/default-source/civil-docs/ect_guide.pdf" },
+        "source": {
+          "instrument": "judiciary.gov.sg",
+          "provision": "Employment Claims Tribunals Guide",
+          "url": "https://www.judiciary.gov.sg/docs/default-source/civil-docs/ect_guide.pdf"
+        },
         "lastVerified": "2026-11-05",
         "status": "SOURCE_CHECKED",
         "checkedBy": "Claude",
@@ -38,8 +76,28 @@
         "explanation": "S$30 for claims of S$10,000 and below, and S$60 for claims above S$10,000. Claims and responses are charged separately."
       },
       "bands": [
-        { "upTo": 10000, "individual": { "type": "flat", "amount": 30 }, "other": { "type": "flat", "amount": 30 } },
-        { "upTo": null, "individual": { "type": "flat", "amount": 60 }, "other": { "type": "flat", "amount": 60 } }
+        {
+          "upTo": 10000,
+          "individual": {
+            "type": "flat",
+            "amount": 30
+          },
+          "other": {
+            "type": "flat",
+            "amount": 30
+          }
+        },
+        {
+          "upTo": null,
+          "individual": {
+            "type": "flat",
+            "amount": 60
+          },
+          "other": {
+            "type": "flat",
+            "amount": 60
+          }
+        }
       ]
     },
     {
@@ -49,7 +107,11 @@
         "title": "PHC starting fee",
         "value": null,
         "unit": "SGD",
-        "source": { "instrument": "judiciary.gov.sg", "provision": "'Before filing' (Protection from Harassment)", "url": "https://www.judiciary.gov.sg/civil/before-filing-protection-from-harassment" },
+        "source": {
+          "instrument": "judiciary.gov.sg",
+          "provision": "'Before filing' (Protection from Harassment)",
+          "url": "https://www.judiciary.gov.sg/civil/before-filing-protection-from-harassment"
+        },
         "lastVerified": "2026-11-05",
         "status": "SOURCE_CHECKED",
         "checkedBy": "Claude",

@@ -62,6 +62,8 @@ export const Rule = z
     explanation: z.string().min(1),
     learnMore: z.string().optional(),
     caveats: z.array(z.string()).optional(),
+    /** Notes about what still needs checking. Shown only when SHOW_RULE_STATUS is on. */
+    verificationNotes: z.array(z.string()).optional(),
   })
   .refine((r) => r.status !== "VERIFIED" || !!r.verifiedBy, {
     message: "A VERIFIED rule must name verifiedBy",
@@ -134,3 +136,72 @@ export const FeesFile = z.object({
 });
 export type FeesFile = z.infer<typeof FeesFile>;
 export type FeeSchedule = z.infer<typeof FeeSchedule>;
+
+/* ---------- time-computation.json ---------- */
+
+export const TimeComputationFile = z.object({
+  ...fileEnvelope,
+  settings: z.object({
+    excludeTriggerDay: z.boolean(),
+    monthIsCalendarMonth: z.boolean(),
+    shortPeriodMaxDays: z.number().int().nonnegative(),
+    rollForwardFromNonCourtDay: z.boolean(),
+    /** 0 = Sunday ... 6 = Saturday */
+    nonCourtWeekdays: z.array(z.number().int().min(0).max(6)),
+    serviceCutoffHour: z.number().int().min(0).max(23),
+  }),
+  rules: z.array(Rule),
+});
+export type TimeComputationFile = z.infer<typeof TimeComputationFile>;
+
+/* ---------- public-holidays-YYYY.json ---------- */
+
+export const HolidaysFile = z.object({
+  ...fileEnvelope,
+  year: z.number().int(),
+  rule: Rule,
+  holidays: z.array(z.object({ date: isoDate, name: z.string() })),
+});
+export type HolidaysFile = z.infer<typeof HolidaysFile>;
+
+/* ---------- roc2021-steps.json ---------- */
+
+export const Stage = z.object({
+  id: z.string(),
+  label: z.string(),
+  dateLabel: z.string(),
+  description: z.string(),
+  /** whether the trigger is a service, so the 5 p.m. rule can apply */
+  timeOfService: z.boolean(),
+});
+export type Stage = z.infer<typeof Stage>;
+
+export const Step = z.object({
+  id: z.string(),
+  stage: z.string(),
+  actor: z.enum(["claimant", "defendant", "court", "both"]),
+  /**
+   * deadline: last day to act (rolled forward off non-court days)
+   * available: from the day after another step's deadline
+   * expected: an approximate date the Court fixes (not rolled)
+   * info: a rule with no date
+   */
+  kind: z.enum(["deadline", "available", "expected", "info"]),
+  title: z.string(),
+  /** "inclusive" for periods that begin WITH the trigger date */
+  countFrom: z.enum(["after", "inclusive"]).optional(),
+  afterStep: z.string().optional(),
+  /** limit to judgments of a particular court */
+  court: z.enum(["state", "gd"]).optional(),
+  rule: Rule,
+  ruleOutOfSingapore: Rule.optional(),
+});
+export type Step = z.infer<typeof Step>;
+
+export const StepsFile = z.object({
+  ...fileEnvelope,
+  scopeNote: z.string(),
+  stages: z.array(Stage),
+  steps: z.array(Step),
+});
+export type StepsFile = z.infer<typeof StepsFile>;

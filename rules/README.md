@@ -8,9 +8,18 @@ files. Nothing legal is hard-coded in the source code.
 | `forums.json` | Forums, monetary limits, claim types, exclusions, time bars, rights of audience |
 | `limitation.json` | Limitation Act 1959 periods and which one applies to each claim type |
 | `fees.json` | Filing fees, only where an official page states them |
+| `time-computation.json` | How time is counted under O 1 r 3, O 3 r 3 and O 7 r 8 |
+| `roc2021-steps.json` | Stages and procedural steps with their periods |
+| `public-holidays-2026.json`, `public-holidays-2027.json` | Public holidays used to skip non-court days |
 
-Later phases add `roc2021-steps.json`, `time-computation.json`,
-`public-holidays-2026.json`, `public-holidays-2027.json` and `quiz-templates.json`.
+**Each new year:** copy the latest holiday file, rename it (for example
+`public-holidays-2028.json`), fill in MOM's list including any Monday that is a
+holiday under s 4(2) of the Holidays Act 1998, and add it to `holidayFiles` in
+`src/lib/rules/index.ts`. Until then the app warns when a date falls in a year
+with no holiday file.
+
+The app currently hides status labels (`SHOW_RULE_STATUS` in `src/lib/config.ts`).
+The `status` field is still kept here as the audit trail.
 
 ## The shape of a rule
 

@@ -1,0 +1,113 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "2026-11-05",
+  "description": "How the Deadline Navigator counts time, taken from O 1 r 3, O 3 r 3 and O 7 r 8 of the Rules of Court 2021. The date engine reads these settings and does not hard-code them.",
+  "settings": {
+    "excludeTriggerDay": true,
+    "monthIsCalendarMonth": true,
+    "shortPeriodMaxDays": 6,
+    "rollForwardFromNonCourtDay": true,
+    "nonCourtWeekdays": [0, 6],
+    "serviceCutoffHour": 17
+  },
+  "rules": [
+    {
+      "id": "time.interpretationAct",
+      "title": "The Interpretation Act does not apply",
+      "value": true,
+      "unit": "boolean",
+      "source": { "instrument": "Rules of Court 2021", "provision": "O 3 r 3(1)", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+      "lastVerified": "2026-11-05",
+      "status": "SOURCE_CHECKED",
+      "checkedBy": "Claude",
+      "verifiedBy": null,
+      "explanation": "Time under the Rules of Court 2021 is calculated only by the rules in O 3 r 3, not by the Interpretation Act."
+    },
+    {
+      "id": "time.month",
+      "title": "A month is a calendar month",
+      "value": true,
+      "unit": "boolean",
+      "source": { "instrument": "Rules of Court 2021", "provision": "O 3 r 3(2)", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+      "lastVerified": "2026-11-05",
+      "status": "SOURCE_CHECKED",
+      "checkedBy": "Claude",
+      "verifiedBy": null,
+      "explanation": "\"Month\" means a calendar month unless the context requires otherwise."
+    },
+    {
+      "id": "time.excludeFirstDay",
+      "title": "A period 'after' a date starts the next day",
+      "value": true,
+      "unit": "boolean",
+      "source": { "instrument": "Rules of Court 2021", "provision": "O 3 r 3(3)", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+      "lastVerified": "2026-11-05",
+      "status": "SOURCE_CHECKED",
+      "checkedBy": "Claude",
+      "verifiedBy": null,
+      "explanation": "Where an act must be done within a period after a date, the period begins immediately after that date. So the day of service is not counted: 14 days after service on 5 Nov ends on 19 Nov.",
+      "learnMore": "Count forward from the day after the trigger date. For example, 'within 14 days after' service on Thursday 5 November 2026 means day 1 is Friday 6 November and day 14 is Thursday 19 November. The act is in time if done on or before 19 November."
+    },
+    {
+      "id": "time.shortPeriod",
+      "title": "Periods of 6 days or less skip non-court days",
+      "value": 6,
+      "unit": "days",
+      "source": { "instrument": "Rules of Court 2021", "provision": "O 3 r 3(6)", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+      "lastVerified": "2026-11-05",
+      "status": "SOURCE_CHECKED",
+      "checkedBy": "Claude",
+      "verifiedBy": null,
+      "explanation": "If the period is 6 days or less, Saturdays, Sundays and public holidays are left out when counting."
+    },
+    {
+      "id": "time.nonCourtDay",
+      "title": "A deadline on a non-court day moves to the next court day",
+      "value": true,
+      "unit": "boolean",
+      "source": { "instrument": "Rules of Court 2021", "provision": "O 3 r 3(7)", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+      "lastVerified": "2026-11-05",
+      "status": "SOURCE_CHECKED",
+      "checkedBy": "Claude",
+      "verifiedBy": null,
+      "explanation": "If the time for doing an act expires on a non-court day, the act is in time if done on the next day that is not a non-court day."
+    },
+    {
+      "id": "time.nonCourtDayDefinition",
+      "title": "What is a non-court day",
+      "value": ["Saturday", "Sunday", "public holiday"],
+      "unit": "list",
+      "source": { "instrument": "Rules of Court 2021", "provision": "O 1 r 3 (\"non-court day\")", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+      "lastVerified": "2026-11-05",
+      "status": "SOURCE_CHECKED",
+      "checkedBy": "Claude",
+      "verifiedBy": null,
+      "explanation": "A non-court day means a Saturday, Sunday or public holiday."
+    },
+    {
+      "id": "time.serviceAfter5pm",
+      "title": "Service after 5 p.m. counts as the next day",
+      "value": 17,
+      "unit": "text",
+      "source": { "instrument": "Rules of Court 2021", "provision": "O 7 r 8", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+      "lastVerified": "2026-11-05",
+      "status": "SOURCE_CHECKED",
+      "checkedBy": "Claude",
+      "verifiedBy": null,
+      "explanation": "Service before 5 p.m. is treated as effected that day. Service after 5 p.m. is treated as effected on the following day.",
+      "caveats": ["O 7 r 8 is subject to O 28, which has its own rules for documents served through the electronic filing service."]
+    },
+    {
+      "id": "time.extensionByConsent",
+      "title": "One extension of up to 14 days by written consent",
+      "value": 14,
+      "unit": "days",
+      "source": { "instrument": "Rules of Court 2021", "provision": "O 3 r 4(3)", "url": "https://sso.agc.gov.sg/SL/SCJA1969-S914-2021?WholeDoc=1" },
+      "lastVerified": "2026-11-05",
+      "status": "SOURCE_CHECKED",
+      "checkedBy": "Claude",
+      "verifiedBy": null,
+      "explanation": "The time to serve, file or amend a pleading or other document may be extended once by written consent, by up to 14 days, without a court order. Any further extension needs the Court."
+    }
+  ]
+}

@@ -3,7 +3,7 @@
 A guidance and learning tool for Singapore law students and junior lawyers.
 
 - **Forum Finder**: enter the claim amount and its nature, and see the likely forum, the alternatives, the reasoning with a source for each step, an abandon-the-excess calculator and a limitation check.
-- **Deadline Navigator** (Phase 2): enter a key date and see the next ROC 2021 steps, with each deadline worked out.
+- **Deadline Navigator**: choose the stage a case has reached and enter the date to see the next ROC 2021 steps, each deadline worked out under O 3 r 3 with weekends and public holidays, for the claimant or the defendant.
 
 > **Guidance only. Verify against current legislation. Not legal advice.**
 

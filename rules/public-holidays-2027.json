@@ -1,0 +1,33 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "2026-11-05",
+  "description": "Singapore public holidays in 2027, including the Mondays that become public holidays under s 4(2) of the Holidays Act 1998 when a holiday falls on a Sunday.",
+  "year": 2027,
+  "rule": {
+    "id": "holidays.2027",
+    "title": "Public holidays 2027",
+    "value": null,
+    "unit": "list",
+    "source": { "instrument": "Holidays Act 1998 (Schedule and s 4(2)); Ministry of Manpower list", "provision": "MOM: Public holidays 2027", "url": "https://www.mom.gov.sg/employment-practices/public-holidays" },
+    "lastVerified": "2026-11-05",
+    "status": "SOURCE_CHECKED",
+    "checkedBy": "Claude",
+    "verifiedBy": null,
+    "explanation": "Dates from MOM's published 2027 list. When a holiday falls on a Sunday, the next day (not itself a public holiday) is also a public holiday under s 4(2) of the Holidays Act 1998.",
+    "caveats": ["If the President declares an additional holiday (for example, Polling Day), add it here."]
+  },
+  "holidays": [
+    { "date": "2027-01-01", "name": "New Year's Day" },
+    { "date": "2027-02-06", "name": "Chinese New Year" },
+    { "date": "2027-02-07", "name": "Chinese New Year (second day)" },
+    { "date": "2027-02-08", "name": "Chinese New Year (observed, Holidays Act s 4(2))" },
+    { "date": "2027-03-10", "name": "Hari Raya Puasa" },
+    { "date": "2027-03-26", "name": "Good Friday" },
+    { "date": "2027-05-01", "name": "Labour Day" },
+    { "date": "2027-05-17", "name": "Hari Raya Haji" },
+    { "date": "2027-05-20", "name": "Vesak Day" },
+    { "date": "2027-08-09", "name": "National Day" },
+    { "date": "2027-10-28", "name": "Deepavali" },
+    { "date": "2027-12-25", "name": "Christmas Day" }
+  ]
+}
