@@ -1,0 +1,114 @@
+@import "tailwindcss";
+
+/* Pastel palette. Text colours are kept dark enough to read in sunlight. */
+:root {
+  --cream: #fff9f4;
+  --blush: #ffd6e0;
+  --blush-deep: #f7a8bd;
+  --lavender: #e4dcff;
+  --lavender-deep: #b9a8f5;
+  --mint: #d3f3e6;
+  --mint-deep: #8fd9bb;
+  --butter: #fff1c2;
+  --ink: #3b2f4a;
+  --ink-soft: #6b5f7a;
+  --berry: #b8326a;
+  --plum: #5b45b0;
+  --line: #eadff0;
+  --danger-bg: #ffe1e1;
+  --danger-ink: #9b1c1c;
+  --amber-bg: #fff0c9;
+  --amber-ink: #7a4b00;
+  --ok-bg: #d8f5e7;
+  --ok-ink: #135c3c;
+}
+
+@theme inline {
+  --color-cream: var(--cream);
+  --color-blush: var(--blush);
+  --color-blush-deep: var(--blush-deep);
+  --color-lavender: var(--lavender);
+  --color-lavender-deep: var(--lavender-deep);
+  --color-mint: var(--mint);
+  --color-mint-deep: var(--mint-deep);
+  --color-butter: var(--butter);
+  --color-ink: var(--ink);
+  --color-ink-soft: var(--ink-soft);
+  --color-berry: var(--berry);
+  --color-plum: var(--plum);
+  --color-line: var(--line);
+  --color-danger-bg: var(--danger-bg);
+  --color-danger-ink: var(--danger-ink);
+  --color-amber-bg: var(--amber-bg);
+  --color-amber-ink: var(--amber-ink);
+  --color-ok-bg: var(--ok-bg);
+  --color-ok-ink: var(--ok-ink);
+  --font-sans: "Nunito Variable", ui-rounded, "Segoe UI", system-ui, sans-serif;
+  --font-display: "Fredoka Variable", ui-rounded, "Segoe UI", system-ui, sans-serif;
+}
+
+html {
+  background: var(--cream);
+}
+
+body {
+  background:
+    radial-gradient(1200px 500px at 10% -10%, #ffe6ee 0%, transparent 60%),
+    radial-gradient(900px 500px at 110% 0%, #ece6ff 0%, transparent 55%),
+    var(--cream);
+  color: var(--ink);
+  font-family: var(--font-sans);
+}
+
+.card {
+  background: #ffffffd9;
+  border: 1.5px solid var(--line);
+  border-radius: 1.5rem;
+  box-shadow: 0 6px 24px -12px #b9a8f566;
+}
+
+.field {
+  width: 100%;
+  border: 1.5px solid var(--line);
+  border-radius: 1rem;
+  background: #fff;
+  padding: 0.7rem 0.9rem;
+  font-size: 1rem;
+  color: var(--ink);
+}
+.field:focus {
+  outline: 3px solid var(--lavender);
+  border-color: var(--lavender-deep);
+}
+
+.chip {
+  border: 1.5px solid var(--line);
+  border-radius: 999px;
+  padding: 0.45rem 0.9rem;
+  background: #fff;
+  font-size: 0.9rem;
+  cursor: pointer;
+}
+.chip[aria-pressed="true"] {
+  background: var(--lavender);
+  border-color: var(--lavender-deep);
+  color: var(--plum);
+  font-weight: 600;
+}
+
+details > summary {
+  cursor: pointer;
+  list-style: none;
+}
+details > summary::-webkit-details-marker {
+  display: none;
+}
+
+@media print {
+  .no-print {
+    display: none !important;
+  }
+  body {
+    background: #fff;
+  }
+}
