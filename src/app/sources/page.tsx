@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { allRules, forumsFile, feesFile, limitationFile, natureLabel } from "@/lib/rules";
 import { StatusBadge } from "@/components/RuleBits";
 import { formatDate } from "@/lib/dates/calendar";
+import { SHOW_RULE_STATUS } from "@/lib/config";
 
 export const metadata: Metadata = { title: "Sources & last verified" };
 
@@ -31,11 +32,11 @@ export default function SourcesPage() {
           Every rule the app uses, read straight from the files in <code>/rules</code>. To change a rule,
           edit its JSON file and open a pull request, so the GitHub history records who changed what and why.
         </p>
-        <div className="mt-4 flex flex-wrap gap-3 text-sm">
+        {SHOW_RULE_STATUS && <div className="mt-4 flex flex-wrap gap-3 text-sm">
           <span className="flex items-center gap-2"><StatusBadge status="UNVERIFIED" /> {counts.UNVERIFIED}</span>
           <span className="flex items-center gap-2"><StatusBadge status="SOURCE_CHECKED" /> {counts.SOURCE_CHECKED}</span>
           <span className="flex items-center gap-2"><StatusBadge status="VERIFIED" /> {counts.VERIFIED}</span>
-        </div>
+        </div>}
         <p className="mt-3 text-xs text-ink-soft">
           Rule file versions: forums.json {forumsFile.rulesVersion} · limitation.json {limitationFile.rulesVersion} ·
           fees.json {feesFile.rulesVersion}
@@ -71,8 +72,8 @@ export default function SourcesPage() {
                     <dt className="font-semibold">Last verified</dt>
                     <dd>
                       {formatDate(r.lastVerified)}
-                      {r.checkedBy ? ` · checked by ${r.checkedBy}` : ""}
-                      {r.verifiedBy ? ` · signed off by ${r.verifiedBy}` : ""}
+                      {SHOW_RULE_STATUS && r.checkedBy ? ` · checked by ${r.checkedBy}` : ""}
+                      {SHOW_RULE_STATUS && r.verifiedBy ? ` · signed off by ${r.verifiedBy}` : ""}
                     </dd>
                     <dt className="font-semibold">File / id</dt>
                     <dd><code>{r.file}</code> · <code>{r.id}</code></dd>

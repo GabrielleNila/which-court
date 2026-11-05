@@ -25,7 +25,11 @@
       "title": "Actions founded on contract or tort",
       "value": 6,
       "unit": "years",
-      "source": { "instrument": "Limitation Act 1959", "provision": "s 6(1)(a)", "url": "https://sso.agc.gov.sg/Act/LA1959?WholeDoc=1#pr6-" },
+      "source": {
+        "instrument": "Limitation Act 1959",
+        "provision": "s 6(1)(a)",
+        "url": "https://sso.agc.gov.sg/Act/LA1959?WholeDoc=1#pr6-"
+      },
       "lastVerified": "2026-11-05",
       "status": "SOURCE_CHECKED",
       "checkedBy": "Claude",
@@ -33,8 +37,10 @@
       "explanation": "An action founded on a contract or on tort cannot be brought more than 6 years after the cause of action accrued.",
       "learnMore": "A cause of action in contract usually accrues on the date of breach, not the date the loss is discovered. In tort it usually accrues when damage is suffered. The Act also has provisions on acknowledgment, part payment, fraud, concealment and disability that can extend or restart the period. This app does not calculate any of those.",
       "caveats": [
-        "Defamation is treated as a tort under s 6(1)(a). Confirm that no special period applies.",
         "For employment claims, the ECT has much shorter TADM deadlines that apply first."
+      ],
+      "verificationNotes": [
+        "Defamation is treated as a tort under s 6(1)(a). Confirm that no special period applies."
       ]
     },
     {
@@ -42,20 +48,30 @@
       "title": "Negligence, nuisance or breach of duty causing personal injury",
       "value": 3,
       "unit": "years",
-      "source": { "instrument": "Limitation Act 1959", "provision": "s 24A(2)", "url": "https://sso.agc.gov.sg/Act/LA1959?WholeDoc=1#pr24A-" },
+      "source": {
+        "instrument": "Limitation Act 1959",
+        "provision": "s 24A(2)",
+        "url": "https://sso.agc.gov.sg/Act/LA1959?WholeDoc=1#pr24A-"
+      },
       "lastVerified": "2026-11-05",
       "status": "SOURCE_CHECKED",
       "checkedBy": "Claude",
       "verifiedBy": null,
       "explanation": "A claim for damages for personal injuries must be brought within 3 years from when the cause of action accrued, or 3 years from the earliest date the claimant had the knowledge needed to sue, whichever is later.",
-      "caveats": ["This app counts only from the accrual date. The later 'date of knowledge' alternative is not calculated."]
+      "caveats": [
+        "This app counts only from the accrual date. The later 'date of knowledge' alternative is not calculated."
+      ]
     },
     {
       "id": "la.s24A.otherDamage",
       "title": "Negligence, nuisance or breach of duty (other damage)",
       "value": 6,
       "unit": "years",
-      "source": { "instrument": "Limitation Act 1959", "provision": "s 24A(3)", "url": "https://sso.agc.gov.sg/Act/LA1959?WholeDoc=1#pr24A-" },
+      "source": {
+        "instrument": "Limitation Act 1959",
+        "provision": "s 24A(3)",
+        "url": "https://sso.agc.gov.sg/Act/LA1959?WholeDoc=1#pr24A-"
+      },
       "lastVerified": "2026-11-05",
       "status": "SOURCE_CHECKED",
       "checkedBy": "Claude",
@@ -71,7 +87,11 @@
       "title": "Overall time limit for negligence",
       "value": 15,
       "unit": "years",
-      "source": { "instrument": "Limitation Act 1959", "provision": "s 24B(1)", "url": "https://sso.agc.gov.sg/Act/LA1959?WholeDoc=1#pr24B-" },
+      "source": {
+        "instrument": "Limitation Act 1959",
+        "provision": "s 24B(1)",
+        "url": "https://sso.agc.gov.sg/Act/LA1959?WholeDoc=1#pr24B-"
+      },
       "lastVerified": "2026-11-05",
       "status": "SOURCE_CHECKED",
       "checkedBy": "Claude",
@@ -83,7 +103,11 @@
       "title": "Action upon a judgment",
       "value": 12,
       "unit": "years",
-      "source": { "instrument": "Limitation Act 1959", "provision": "s 6(3)", "url": "https://sso.agc.gov.sg/Act/LA1959?WholeDoc=1#pr6-" },
+      "source": {
+        "instrument": "Limitation Act 1959",
+        "provision": "s 6(3)",
+        "url": "https://sso.agc.gov.sg/Act/LA1959?WholeDoc=1#pr6-"
+      },
       "lastVerified": "2026-11-05",
       "status": "SOURCE_CHECKED",
       "checkedBy": "Claude",

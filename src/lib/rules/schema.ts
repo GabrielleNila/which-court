@@ -62,6 +62,8 @@ export const Rule = z
     explanation: z.string().min(1),
     learnMore: z.string().optional(),
     caveats: z.array(z.string()).optional(),
+    /** Notes about what still needs checking. Shown only when SHOW_RULE_STATUS is on. */
+    verificationNotes: z.array(z.string()).optional(),
   })
   .refine((r) => r.status !== "VERIFIED" || !!r.verifiedBy, {
     message: "A VERIFIED rule must name verifiedBy",

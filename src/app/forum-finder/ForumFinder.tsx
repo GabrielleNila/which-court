@@ -18,6 +18,7 @@ import { forum, maybeRule, rule } from "@/lib/rules";
 import { formatDate, todaySG } from "@/lib/dates/calendar";
 import { LearnMore, SourceCite, StatusBadge } from "@/components/RuleBits";
 import { Emblem } from "@/components/Emblem";
+import { SHOW_RULE_STATUS } from "@/lib/config";
 
 function Chips<T extends string>({
   value,
@@ -287,7 +288,7 @@ function Results({ result, amount }: { result: ForumResult; amount: number }) {
 
   return (
     <>
-      {unverifiedUsed.length > 0 && (
+      {SHOW_RULE_STATUS && unverifiedUsed.length > 0 && (
         <div className="rounded-md border border-danger-ink/30 bg-danger-bg px-4 py-3 text-sm text-danger-ink">
           <strong>⚠ This result relies on {unverifiedUsed.length} UNVERIFIED rule{unverifiedUsed.length > 1 ? "s" : ""}:</strong>{" "}
           {unverifiedUsed.map((r) => r.title).join("; ")}. Check these against the source before relying on them.

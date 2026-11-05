@@ -1,5 +1,6 @@
 import type { Rule, RuleStatus } from "@/lib/rules/schema";
 import { formatDate } from "@/lib/dates/calendar";
+import { SHOW_RULE_STATUS } from "@/lib/config";
 
 const STATUS: Record<RuleStatus, { label: string; cls: string; icon: string; title: string }> = {
   UNVERIFIED: {
@@ -23,6 +24,7 @@ const STATUS: Record<RuleStatus, { label: string; cls: string; icon: string; tit
 };
 
 export function StatusBadge({ status, verifiedBy }: { status: RuleStatus; verifiedBy?: string | null }) {
+  if (!SHOW_RULE_STATUS) return null;
   const s = STATUS[status];
   return (
     <span
