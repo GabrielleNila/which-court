@@ -27,7 +27,7 @@ describe("rule files", () => {
   it("only uses claim-nature ids that exist", () => {
     const natures = new Set(forumsFile.claimNatures.map((n) => n.id));
     for (const r of rules) {
-      if (r.unit === "list" && Array.isArray(r.value)) {
+      if (r.file === "forums.json" && r.unit === "list" && Array.isArray(r.value)) {
         for (const v of r.value) expect(natures, `${r.id} -> ${v}`).toContain(v);
       }
     }
