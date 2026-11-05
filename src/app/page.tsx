@@ -36,7 +36,7 @@ export default function Home() {
           <p className="mt-1 text-ink-soft">
             Map the next ROC 2021 steps from a key date, with the working shown for every deadline.
           </p>
-          <span className="mt-3 inline-block font-semibold text-navy">Coming in Phase 2</span>
+          <span className="mt-3 inline-block font-semibold text-navy group-hover:underline">Map the deadlines →</span>
         </Link>
       </section>
 
