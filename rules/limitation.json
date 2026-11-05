@@ -1,0 +1,94 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "2026-11-05",
+  "description": "Limitation periods under the Limitation Act 1959, and which period the Forum Finder applies to each claim type. A null mapping means the app will not guess.",
+  "natureMap": {
+    "debt_goods_services": "la.s6.contractTort",
+    "contract": "la.s6.contractTort",
+    "tenancy": "la.s6.contractTort",
+    "renovation": "la.s6.contractTort",
+    "defamation": "la.s6.contractTort",
+    "employment_salary": "la.s6.contractTort",
+    "neighbour": "la.s24A.otherDamage",
+    "harassment": null,
+    "pi_road": "la.s24A.personalInjury",
+    "pi_industrial": "la.s24A.personalInjury",
+    "pi_other": "la.s24A.personalInjury",
+    "road_accident_damage": "la.s24A.otherDamage",
+    "passing_off": "la.s6.contractTort",
+    "family": null,
+    "other": null
+  },
+  "rules": [
+    {
+      "id": "la.s6.contractTort",
+      "title": "Actions founded on contract or tort",
+      "value": 6,
+      "unit": "years",
+      "source": { "instrument": "Limitation Act 1959", "provision": "s 6(1)(a)", "url": "https://sso.agc.gov.sg/Act/LA1959?WholeDoc=1#pr6-" },
+      "lastVerified": "2026-11-05",
+      "status": "SOURCE_CHECKED",
+      "checkedBy": "Claude",
+      "verifiedBy": null,
+      "explanation": "An action founded on a contract or on tort cannot be brought more than 6 years after the cause of action accrued.",
+      "learnMore": "A cause of action in contract usually accrues on the date of breach, not the date the loss is discovered. In tort it usually accrues when damage is suffered. The Act also has provisions on acknowledgment, part payment, fraud, concealment and disability that can extend or restart the period. This app does not calculate any of those.",
+      "caveats": [
+        "Defamation is treated as a tort under s 6(1)(a). Confirm that no special period applies.",
+        "For employment claims, the ECT has much shorter TADM deadlines that apply first."
+      ]
+    },
+    {
+      "id": "la.s24A.personalInjury",
+      "title": "Negligence, nuisance or breach of duty causing personal injury",
+      "value": 3,
+      "unit": "years",
+      "source": { "instrument": "Limitation Act 1959", "provision": "s 24A(2)", "url": "https://sso.agc.gov.sg/Act/LA1959?WholeDoc=1#pr24A-" },
+      "lastVerified": "2026-11-05",
+      "status": "SOURCE_CHECKED",
+      "checkedBy": "Claude",
+      "verifiedBy": null,
+      "explanation": "A claim for damages for personal injuries must be brought within 3 years from when the cause of action accrued, or 3 years from the earliest date the claimant had the knowledge needed to sue, whichever is later.",
+      "caveats": ["This app counts only from the accrual date. The later 'date of knowledge' alternative is not calculated."]
+    },
+    {
+      "id": "la.s24A.otherDamage",
+      "title": "Negligence, nuisance or breach of duty (other damage)",
+      "value": 6,
+      "unit": "years",
+      "source": { "instrument": "Limitation Act 1959", "provision": "s 24A(3)", "url": "https://sso.agc.gov.sg/Act/LA1959?WholeDoc=1#pr24A-" },
+      "lastVerified": "2026-11-05",
+      "status": "SOURCE_CHECKED",
+      "checkedBy": "Claude",
+      "verifiedBy": null,
+      "explanation": "Other negligence, nuisance or breach of duty claims must be brought within 6 years from accrual, or 3 years from the date of knowledge if later.",
+      "caveats": [
+        "This app counts only from the accrual date. The later 'date of knowledge' alternative is not calculated.",
+        "There is an overall long-stop of 15 years from the act or omission (s 24B)."
+      ]
+    },
+    {
+      "id": "la.s24B.longStop",
+      "title": "Overall time limit for negligence",
+      "value": 15,
+      "unit": "years",
+      "source": { "instrument": "Limitation Act 1959", "provision": "s 24B(1)", "url": "https://sso.agc.gov.sg/Act/LA1959?WholeDoc=1#pr24B-" },
+      "lastVerified": "2026-11-05",
+      "status": "SOURCE_CHECKED",
+      "checkedBy": "Claude",
+      "verifiedBy": null,
+      "explanation": "An action for negligence, nuisance or breach of duty under s 24A cannot be brought more than 15 years after the act or omission complained of."
+    },
+    {
+      "id": "la.s6.judgment",
+      "title": "Action upon a judgment",
+      "value": 12,
+      "unit": "years",
+      "source": { "instrument": "Limitation Act 1959", "provision": "s 6(3)", "url": "https://sso.agc.gov.sg/Act/LA1959?WholeDoc=1#pr6-" },
+      "lastVerified": "2026-11-05",
+      "status": "SOURCE_CHECKED",
+      "checkedBy": "Claude",
+      "verifiedBy": null,
+      "explanation": "An action upon a judgment cannot be brought more than 12 years after the judgment became enforceable."
+    }
+  ]
+}

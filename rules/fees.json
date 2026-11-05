@@ -1,0 +1,61 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "2026-11-05",
+  "description": "Filing fees, only where an official page states them. Forums missing from this file show 'fee not shown' rather than an estimate.",
+  "schedules": [
+    {
+      "forumId": "sct",
+      "rule": {
+        "id": "fees.sct.filing",
+        "title": "SCT filing fee for a claim or counterclaim",
+        "value": null,
+        "unit": "SGD",
+        "source": { "instrument": "judiciary.gov.sg", "provision": "'How to file and serve a small claim': filing fees table", "url": "https://www.judiciary.gov.sg/civil/how-to-file-serve-small-claim" },
+        "lastVerified": "2026-11-05",
+        "status": "SOURCE_CHECKED",
+        "checkedBy": "Claude",
+        "verifiedBy": null,
+        "explanation": "The fee depends on the claim amount and on whether the claimant is an individual or another entity (sole proprietorship, partnership, company or association). Filing fees are not refunded if you withdraw."
+      },
+      "bands": [
+        { "upTo": 5000, "individual": { "type": "flat", "amount": 10 }, "other": { "type": "flat", "amount": 50 } },
+        { "upTo": 10000, "individual": { "type": "flat", "amount": 20 }, "other": { "type": "flat", "amount": 100 } },
+        { "upTo": 30000, "individual": { "type": "percent", "amount": 1 }, "other": { "type": "percent", "amount": 3 } }
+      ]
+    },
+    {
+      "forumId": "ect",
+      "rule": {
+        "id": "fees.ect.filing",
+        "title": "ECT filing fee",
+        "value": null,
+        "unit": "SGD",
+        "source": { "instrument": "judiciary.gov.sg", "provision": "Employment Claims Tribunals Guide", "url": "https://www.judiciary.gov.sg/docs/default-source/civil-docs/ect_guide.pdf" },
+        "lastVerified": "2026-11-05",
+        "status": "SOURCE_CHECKED",
+        "checkedBy": "Claude",
+        "verifiedBy": null,
+        "explanation": "S$30 for claims of S$10,000 and below, and S$60 for claims above S$10,000. Claims and responses are charged separately."
+      },
+      "bands": [
+        { "upTo": 10000, "individual": { "type": "flat", "amount": 30 }, "other": { "type": "flat", "amount": 30 } },
+        { "upTo": null, "individual": { "type": "flat", "amount": 60 }, "other": { "type": "flat", "amount": 60 } }
+      ]
+    },
+    {
+      "forumId": "phc",
+      "rule": {
+        "id": "fees.phc.filing",
+        "title": "PHC starting fee",
+        "value": null,
+        "unit": "SGD",
+        "source": { "instrument": "judiciary.gov.sg", "provision": "'Before filing' (Protection from Harassment)", "url": "https://www.judiciary.gov.sg/civil/before-filing-protection-from-harassment" },
+        "lastVerified": "2026-11-05",
+        "status": "SOURCE_CHECKED",
+        "checkedBy": "Claude",
+        "verifiedBy": null,
+        "explanation": "At least S$30 to start a simplified claim, and at least S$110 to start a standard application. The exact amount is set by the Rules of Court."
+      }
+    }
+  ]
+}

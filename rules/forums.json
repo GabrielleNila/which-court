@@ -1,0 +1,692 @@
+{
+  "schemaVersion": "1.0",
+  "rulesVersion": "2026-11-05",
+  "description": "Forums for civil claims in Singapore: monetary limits, claim types, exclusions, preconditions, time bars and rights of audience. The Forum Finder reads only from this file.",
+  "claimNatures": [
+    { "id": "debt_goods_services", "label": "Debt / sale of goods or services", "hint": "Unpaid invoice, goods not delivered, services not paid for" },
+    { "id": "contract", "label": "Other contract claim", "hint": "Breach of a contract that is not mainly for goods or services" },
+    { "id": "tenancy", "label": "Tenancy", "hint": "Rent, deposit or other lease disputes" },
+    { "id": "renovation", "label": "Renovation", "hint": "Contractor works, defects, deposits" },
+    { "id": "defamation", "label": "Defamation", "hint": "Libel or slander" },
+    { "id": "employment_salary", "label": "Employment / salary", "hint": "Unpaid salary, wrongful dismissal" },
+    { "id": "neighbour", "label": "Neighbour dispute", "hint": "Noise, smell, obstruction, littering by a neighbour" },
+    { "id": "harassment", "label": "Harassment", "hint": "Harassment, stalking, doxxing, false statements under POHA" },
+    { "id": "pi_road", "label": "Personal injury: road traffic accident" },
+    { "id": "pi_industrial", "label": "Personal injury: industrial accident" },
+    { "id": "pi_other", "label": "Personal injury: other" },
+    { "id": "road_accident_damage", "label": "Road accident: vehicle / property damage only" },
+    { "id": "passing_off", "label": "Passing off (brand or get-up imitation)" },
+    { "id": "family", "label": "Family matter", "hint": "Divorce, maintenance, custody, family violence" },
+    { "id": "other", "label": "Other" }
+  ],
+  "forums": [
+    {
+      "id": "sct",
+      "name": "Small Claims Tribunals",
+      "shortName": "SCT",
+      "system": "State Courts",
+      "summary": "A quick, low-cost tribunal for small consumer and business claims, run without lawyers.",
+      "learnMore": "The SCT is designed for parties to resolve small claims themselves. Cases usually start with consultation or mediation, then go to hearing if unresolved. It only hears the 'specified claims' listed in the Schedule to the Small Claims Tribunals Act 1984, so the first question is always whether your claim type is on that list, and only then whether it fits the monetary limit. Lawyers cannot represent parties, which keeps costs down.",
+      "rules": [
+        {
+          "id": "sct.claimTypes",
+          "title": "Specified claims the SCT can hear",
+          "value": ["debt_goods_services", "renovation", "contract", "tenancy"],
+          "unit": "list",
+          "source": { "instrument": "Small Claims Tribunals Act 1984", "provision": "s 5(1)(a) and the Schedule, para 1", "url": "https://sso.agc.gov.sg/Act/SCTA1984?WholeDoc=1#Sc-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "The SCT only hears claims listed in the Schedule, mainly contracts for the sale of goods or provision of services, tort claims for damage to property, and residential leases of up to 2 years.",
+          "caveats": [
+            "A general contract claim qualifies only if the contract is for the sale of goods or the provision of services (Schedule para 1(a)).",
+            "A tenancy claim qualifies only if it concerns a lease of residential premises not exceeding 2 years (Schedule para 1(c)).",
+            "Tort claims for damage to property also qualify (Schedule para 1(b)), except claims under s 4 of the Community Disputes Resolution Act 2015."
+          ]
+        },
+        {
+          "id": "sct.excluded.motorVehicleDamage",
+          "title": "No jurisdiction over motor accident property damage",
+          "value": ["road_accident_damage", "pi_road"],
+          "unit": "list",
+          "source": { "instrument": "Small Claims Tribunals Act 1984", "provision": "s 5(2)(a)", "url": "https://sso.agc.gov.sg/Act/SCTA1984?WholeDoc=1#pr5-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "The SCT cannot hear claims for damage to property caused by an accident arising out of the use of a motor vehicle."
+        },
+        {
+          "id": "sct.limit.default",
+          "title": "SCT prescribed limit",
+          "value": 20000,
+          "unit": "SGD",
+          "source": { "instrument": "Small Claims Tribunals Act 1984", "provision": "s 2(1) (\"prescribed limit\") and s 5(3)(a)", "url": "https://sso.agc.gov.sg/Act/SCTA1984?WholeDoc=1#pr2-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "The SCT can hear claims worth up to S$20,000."
+        },
+        {
+          "id": "sct.limit.consent",
+          "title": "SCT prescribed extended limit (by Memorandum of Consent)",
+          "value": 30000,
+          "unit": "SGD",
+          "source": { "instrument": "Small Claims Tribunals Act 1984", "provision": "s 2(1) (\"prescribed extended limit\") and s 5(4)", "url": "https://sso.agc.gov.sg/Act/SCTA1984?WholeDoc=1#pr5-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "If all parties sign a memorandum agreeing to it, the SCT can hear claims worth up to S$30,000."
+        },
+        {
+          "id": "sct.timeBar",
+          "title": "SCT time bar",
+          "value": 2,
+          "unit": "years",
+          "source": { "instrument": "Small Claims Tribunals Act 1984", "provision": "s 5(3)(b)", "url": "https://sso.agc.gov.sg/Act/SCTA1984?WholeDoc=1#pr5-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "The SCT cannot hear a claim lodged more than 2 years after the cause of action accrued. This is much shorter than the usual 6-year limitation period, so an older claim may still go to the Magistrate's Court."
+        },
+        {
+          "id": "sct.abandonExcess",
+          "title": "Abandoning the excess to stay in the SCT",
+          "value": true,
+          "unit": "boolean",
+          "source": { "instrument": "Small Claims Tribunals Act 1984", "provision": "s 9", "url": "https://sso.agc.gov.sg/Act/SCTA1984?WholeDoc=1#pr9-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "If the claim is over the limit and the parties do not agree to the extended limit, the claimant may abandon the excess. The SCT order then fully discharges all demands for that claim, so the excess is lost for good."
+        },
+        {
+          "id": "sct.noSplitting",
+          "title": "No splitting of claims",
+          "value": true,
+          "unit": "boolean",
+          "source": { "instrument": "Small Claims Tribunals Act 1984", "provision": "s 8", "url": "https://sso.agc.gov.sg/Act/SCTA1984?WholeDoc=1#pr8-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "A claim cannot be split into separate SCT claims just to bring each part under the limit."
+        },
+        {
+          "id": "sct.lawyers",
+          "title": "Lawyers cannot represent parties",
+          "value": false,
+          "unit": "boolean",
+          "source": { "instrument": "Small Claims Tribunals Act 1984", "provision": "s 23(3)", "url": "https://sso.agc.gov.sg/Act/SCTA1984?WholeDoc=1#pr23-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "Parties present their own case. A company may be represented by an officer or employee (s 23(2)), but no party may be represented by an advocate and solicitor."
+        }
+      ]
+    },
+    {
+      "id": "ect",
+      "name": "Employment Claims Tribunals",
+      "shortName": "ECT",
+      "system": "State Courts",
+      "summary": "A tribunal for salary-related and wrongful dismissal claims, after mediation at TADM.",
+      "learnMore": "The ECT was set up so that employees and employers can resolve salary and wrongful dismissal disputes without going to court. Before you can file, you must first request mediation at the Tripartite Alliance for Dispute Management (TADM). If mediation fails, TADM issues a Claim Referral Certificate, and only then can you file at the ECT. The monetary limit is higher if the dispute went through the Tripartite Mediation Framework or union-assisted mediation.",
+      "rules": [
+        {
+          "id": "ect.claimTypes",
+          "title": "Claims the ECT can hear",
+          "value": ["employment_salary"],
+          "unit": "list",
+          "source": { "instrument": "Employment Claims Act 2016", "provision": "s 12(2)–(4); First and Second Schedules", "url": "https://sso.agc.gov.sg/Act/ECA2016?WholeDoc=1#pr12-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "Statutory and contractual salary-related claims and wrongful dismissal claims by employees. Employers can claim only salary in lieu of notice of termination.",
+          "caveats": [
+            "Public servants, domestic workers, seafarers and self-employed persons cannot file at the ECT (judiciary.gov.sg eligibility page).",
+            "The respondent must reside, or have a registered office or place of business, in Singapore."
+          ]
+        },
+        {
+          "id": "ect.precondition.tadm",
+          "title": "Mediation at TADM and a Claim Referral Certificate first",
+          "value": true,
+          "unit": "boolean",
+          "source": { "instrument": "Employment Claims Act 2016", "provision": "s 12(5)", "url": "https://sso.agc.gov.sg/Act/ECA2016?WholeDoc=1#pr12-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "The claim must be supported by a Claim Referral Certificate for every dispute, which TADM issues when mediation does not resolve it."
+        },
+        {
+          "id": "ect.limit.default",
+          "title": "ECT claim limit",
+          "value": 20000,
+          "unit": "SGD",
+          "source": { "instrument": "Employment Claims Act 2016 and judiciary.gov.sg eligibility guidance", "provision": "s 12(7) (limit prescribed by regulations)", "url": "https://www.judiciary.gov.sg/civil/cases-eligible-employment-claim" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "The ECT can hear claims of up to S$20,000.",
+          "caveats": ["The figure is set by regulations under s 12(7) and s 34 of the Act. The regulation number has not yet been confirmed on SSO."]
+        },
+        {
+          "id": "ect.limit.mediated",
+          "title": "ECT higher limit after TMF or union-assisted mediation",
+          "value": 30000,
+          "unit": "SGD",
+          "source": { "instrument": "Employment Claims Act 2016 and judiciary.gov.sg eligibility guidance", "provision": "s 12(7) (limit prescribed by regulations)", "url": "https://www.judiciary.gov.sg/civil/cases-eligible-employment-claim" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "The limit rises to S$30,000 if the dispute went through the Tripartite Mediation Framework or mediation assisted by a union recognised under the Industrial Relations Act.",
+          "caveats": ["The regulation number has not yet been confirmed on SSO."]
+        },
+        {
+          "id": "ect.timeBar.tadm.employed",
+          "title": "Salary claim, still employed: time to request TADM mediation",
+          "value": 1,
+          "unit": "years",
+          "source": { "instrument": "Ministry of Manpower guidance (Employment Claims Act 2016 and regulations)", "provision": "MOM: Managing employment disputes", "url": "https://mom.gov.sg/employment-practices/managing-employment-disputes" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "If you are still employed, submit the mediation request within 1 year after the dispute arose."
+        },
+        {
+          "id": "ect.timeBar.tadm.left",
+          "title": "Salary claim, no longer employed: time to request TADM mediation",
+          "value": 6,
+          "unit": "months",
+          "source": { "instrument": "Ministry of Manpower guidance (Employment Claims Act 2016 and regulations)", "provision": "MOM: Managing employment disputes", "url": "https://mom.gov.sg/employment-practices/managing-employment-disputes" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "If you have left employment, submit the mediation request within 6 months from your last day of work."
+        },
+        {
+          "id": "ect.timeBar.tadm.wrongfulDismissal",
+          "title": "Wrongful dismissal: time to request TADM mediation",
+          "value": 1,
+          "unit": "months",
+          "source": { "instrument": "Ministry of Manpower guidance (Employment Claims Act 2016 and regulations)", "provision": "MOM: Managing employment disputes", "url": "https://mom.gov.sg/employment-practices/managing-employment-disputes" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "Submit the mediation request within 1 month from your last day of work.",
+          "caveats": ["A pregnant employee dismissed without maternity benefits has 2 months from the date of confinement."]
+        },
+        {
+          "id": "ect.timeBar.file",
+          "title": "Time to file at the ECT after the Claim Referral Certificate",
+          "value": 4,
+          "unit": "weeks",
+          "source": { "instrument": "Employment Claims Act 2016, s 12(6), as explained in the ECT Guide", "provision": "s 12(6) (period prescribed by regulations)", "url": "https://www.judiciary.gov.sg/docs/default-source/civil-docs/ect_guide.pdf" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "File the claim within 4 weeks after the date the Claim Referral Certificate is issued."
+        },
+        {
+          "id": "ect.abandonExcess",
+          "title": "Abandoning the excess to stay in the ECT",
+          "value": true,
+          "unit": "boolean",
+          "source": { "instrument": "Employment Claims Act 2016", "provision": "s 15", "url": "https://sso.agc.gov.sg/Act/ECA2016?WholeDoc=1#pr15-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "A claimant may abandon the amount above the limit. The abandoned amount cannot be recovered in the tribunal or in any other court."
+        },
+        {
+          "id": "ect.noSplitting",
+          "title": "No splitting of claims",
+          "value": true,
+          "unit": "boolean",
+          "source": { "instrument": "Employment Claims Act 2016", "provision": "s 14", "url": "https://sso.agc.gov.sg/Act/ECA2016?WholeDoc=1#pr14-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "A claim cannot be divided into separate proceedings only to bring each part within the limit."
+        },
+        {
+          "id": "ect.lawyers",
+          "title": "Lawyers cannot represent parties",
+          "value": false,
+          "unit": "boolean",
+          "source": { "instrument": "Employment Claims Act 2016", "provision": "s 19", "url": "https://sso.agc.gov.sg/Act/ECA2016?WholeDoc=1#pr19-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "Parties act in person before the tribunal. A company may be represented by an officer or full-time employee, but not by an advocate and solicitor."
+        }
+      ]
+    },
+    {
+      "id": "cdrt",
+      "name": "Community Disputes Resolution Tribunals",
+      "shortName": "CDRT",
+      "system": "State Courts",
+      "summary": "A tribunal for disputes between neighbours, such as noise, smell, obstruction and littering.",
+      "learnMore": "The CDRT deals with 'unreasonable interference' by a neighbour with your enjoyment or use of your home, under the Community Disputes Resolution Act 2015. Remedies include orders to stop the behaviour, apologies and damages. Parties are encouraged to try community mediation first. The tribunal is designed to be used without lawyers.",
+      "rules": [
+        {
+          "id": "cdrt.claimTypes",
+          "title": "Claims the CDRT can hear",
+          "value": ["neighbour"],
+          "unit": "list",
+          "source": { "instrument": "Community Disputes Resolution Act 2015", "provision": "Part 2 (unreasonable interference); judiciary.gov.sg eligibility page", "url": "https://www.judiciary.gov.sg/civil/cases-eligible-neighbour-dispute-claim" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "Claims against a neighbour living in the same building or within 100 metres, for acts that unreasonably interfere with the use or enjoyment of your home.",
+          "caveats": ["You cannot file against someone who lives in the same residence as you."]
+        },
+        {
+          "id": "cdrt.parties",
+          "title": "Parties must be individual neighbours",
+          "value": "individuals",
+          "unit": "text",
+          "source": { "instrument": "Community Disputes Resolution Act 2015", "provision": "judiciary.gov.sg eligibility page", "url": "https://www.judiciary.gov.sg/civil/cases-eligible-neighbour-dispute-claim" },
+          "lastVerified": "2026-11-05",
+          "status": "UNVERIFIED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "The CDRT is built for disputes between neighbours who live near each other, so it is treated here as open only where both sides are individuals.",
+          "caveats": ["Confirm against the Act whether a company can ever be a party."]
+        },
+        {
+          "id": "cdrt.limit.default",
+          "title": "CDRT maximum monetary claim",
+          "value": 20000,
+          "unit": "SGD",
+          "source": { "instrument": "Community Disputes Resolution Act 2015 and Rules; judiciary.gov.sg eligibility page", "provision": "judiciary.gov.sg: 'Cases eligible for a neighbour dispute claim'", "url": "https://www.judiciary.gov.sg/civil/cases-eligible-neighbour-dispute-claim" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "The maximum monetary claim in the CDRT is S$20,000. Larger claims must be brought as a civil claim in court.",
+          "caveats": ["The statutory provision setting this figure has not yet been confirmed on SSO."]
+        },
+        {
+          "id": "cdrt.timeBar",
+          "title": "CDRT time bar",
+          "value": 2,
+          "unit": "years",
+          "source": { "instrument": "Community Disputes Resolution Act 2015 and Rules; judiciary.gov.sg eligibility page", "provision": "judiciary.gov.sg: 'Cases eligible for a neighbour dispute claim'", "url": "https://www.judiciary.gov.sg/civil/cases-eligible-neighbour-dispute-claim" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "Claims must be filed within 2 years of the event that gives rise to the cause of action.",
+          "caveats": ["The statutory provision has not yet been confirmed on SSO."]
+        },
+        {
+          "id": "cdrt.lawyers",
+          "title": "Lawyers only with everyone's agreement and the tribunal's permission",
+          "value": false,
+          "unit": "boolean",
+          "source": { "instrument": "Community Disputes Resolution Act 2015", "provision": "s 29(3)", "url": "https://sso.agc.gov.sg/Act/CDRA2015?WholeDoc=1#pr29-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "No party may be represented by a lawyer unless all parties agree and the Registrar or tribunal allows it."
+        }
+      ]
+    },
+    {
+      "id": "phc",
+      "name": "Protection from Harassment Court",
+      "shortName": "PHC",
+      "system": "State Courts",
+      "summary": "A specialist court for harassment, stalking, doxxing and false statements under POHA.",
+      "learnMore": "The Protection from Harassment Court started on 1 June 2021 and hears civil matters under the Protection from Harassment Act 2014: protection orders, expedited protection orders, orders about false statements and claims for damages. There is a simplified track for damages claims of S$20,000 or less, designed for people acting for themselves.",
+      "rules": [
+        {
+          "id": "phc.claimTypes",
+          "title": "Matters the PHC hears",
+          "value": ["harassment"],
+          "unit": "list",
+          "source": { "instrument": "Protection from Harassment Act 2014", "provision": "judiciary.gov.sg: 'Before filing'", "url": "https://www.judiciary.gov.sg/civil/before-filing-protection-from-harassment" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "Harassment, stalking, cyberbullying and other behaviour that causes or is likely to cause harassment, alarm or distress.",
+          "caveats": ["Harassment between family members may belong in the Family Justice Courts."]
+        },
+        {
+          "id": "phc.limit.simplified",
+          "title": "Simplified track for damages claims",
+          "value": 20000,
+          "unit": "SGD",
+          "source": { "instrument": "Protection from Harassment Act 2014", "provision": "judiciary.gov.sg: 'Before filing'", "url": "https://www.judiciary.gov.sg/civil/before-filing-protection-from-harassment" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "Claims for compensation of S$20,000 or less can use the simplified track, if there is a single claimant and no more than 5 respondents."
+        },
+        {
+          "id": "phc.timeBar.simplified",
+          "title": "Simplified track time bar",
+          "value": 2,
+          "unit": "years",
+          "source": { "instrument": "Protection from Harassment Act 2014", "provision": "judiciary.gov.sg: 'Before filing'", "url": "https://www.judiciary.gov.sg/civil/before-filing-protection-from-harassment" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "A simplified-track claim must be filed within 2 years of the event.",
+          "caveats": ["The statutory provision has not yet been confirmed on SSO."]
+        },
+        {
+          "id": "phc.lawyers",
+          "title": "Lawyers may act",
+          "value": true,
+          "unit": "boolean",
+          "source": { "instrument": "Protection from Harassment Act 2014", "provision": "judiciary.gov.sg: 'Before filing' (refers to parties not represented by a lawyer)", "url": "https://www.judiciary.gov.sg/civil/before-filing-protection-from-harassment" },
+          "lastVerified": "2026-11-05",
+          "status": "UNVERIFIED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "The judiciary's guidance implies that parties may be represented by lawyers in the PHC.",
+          "caveats": ["Not stated expressly in the source checked. Confirm against the Act and the rules."]
+        }
+      ]
+    },
+    {
+      "id": "mc",
+      "name": "Magistrate's Court",
+      "shortName": "MC",
+      "system": "State Courts",
+      "summary": "Civil money claims up to S$60,000.",
+      "learnMore": "The Magistrate's Court has the same in personam jurisdiction as the General Division of the High Court, but only for claims within the Magistrate's Court limit. It cannot hear passing off actions or actions where no sum of money is claimed. Many MC claims follow the simplified process in Order 65 of the Rules of Court 2021.",
+      "rules": [
+        {
+          "id": "mc.limit.default",
+          "title": "Magistrate's Court limit",
+          "value": 60000,
+          "unit": "SGD",
+          "source": { "instrument": "State Courts Act 1970; State Courts (Variation of Magistrate's Court Limit) Order", "provision": "s 2 (\"Magistrate's Court limit\"), s 52(1A)(b); Order para 2", "url": "https://sso.agc.gov.sg/Act/SCA1970?WholeDoc=1#pr52-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "The Magistrate's Court cannot hear a claim where the amount claimed exceeds S$60,000."
+        },
+        {
+          "id": "mc.excluded.passingOff",
+          "title": "No jurisdiction over passing off",
+          "value": ["passing_off"],
+          "unit": "list",
+          "source": { "instrument": "State Courts Act 1970", "provision": "s 52(1A)(aa)", "url": "https://sso.agc.gov.sg/Act/SCA1970?WholeDoc=1#pr52-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "The Magistrate's Court cannot hear an action in passing off."
+        },
+        {
+          "id": "mc.excluded.noMoneyClaim",
+          "title": "No jurisdiction where no sum of money is claimed",
+          "value": true,
+          "unit": "boolean",
+          "source": { "instrument": "State Courts Act 1970", "provision": "s 52(1A)(a)", "url": "https://sso.agc.gov.sg/Act/SCA1970?WholeDoc=1#pr52-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "The Magistrate's Court cannot hear an action where there is no claim for any sum of money, such as a claim for an injunction or declaration alone."
+        },
+        {
+          "id": "mc.excluded.family",
+          "title": "Family matters belong to the Family Justice Courts",
+          "value": ["family"],
+          "unit": "list",
+          "source": { "instrument": "State Courts Act 1970", "provision": "s 52(2) read with s 19(3)(c)", "url": "https://sso.agc.gov.sg/Act/SCA1970?WholeDoc=1#pr19-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "Jurisdiction vested exclusively in a Family Court is excluded from the State Courts' general civil jurisdiction."
+        },
+        {
+          "id": "mc.abandonExcess",
+          "title": "Abandoning the excess to stay in the MC",
+          "value": true,
+          "unit": "boolean",
+          "source": { "instrument": "State Courts Act 1970", "provision": "s 52(2) read with s 22", "url": "https://sso.agc.gov.sg/Act/SCA1970?WholeDoc=1#pr52-" },
+          "lastVerified": "2026-11-05",
+          "status": "UNVERIFIED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "Section 52(2) applies to the MC the same limitations and provisions that apply to a District Court, which appears to include the s 22 power to abandon the excess.",
+          "caveats": ["This is an interpretation of s 52(2). Confirm before relying on it."]
+        },
+        {
+          "id": "mc.consent",
+          "title": "Higher claim in the MC by signed memorandum",
+          "value": true,
+          "unit": "boolean",
+          "source": { "instrument": "State Courts Act 1970", "provision": "s 52(2) read with s 23", "url": "https://sso.agc.gov.sg/Act/SCA1970?WholeDoc=1#pr52-" },
+          "lastVerified": "2026-11-05",
+          "status": "UNVERIFIED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "Section 52(2) may allow parties to agree by memorandum that the MC hears a claim above its limit, as s 23 allows for the District Court.",
+          "caveats": ["This is an interpretation of s 52(2). Confirm before relying on it."]
+        },
+        {
+          "id": "mc.lawyers",
+          "title": "Lawyers may act",
+          "value": true,
+          "unit": "boolean",
+          "source": { "instrument": "Legal Profession Act 1966", "provision": "Right of audience of advocates and solicitors (section not yet confirmed)", "url": "https://sso.agc.gov.sg/Act/LPA1966" },
+          "lastVerified": "2026-11-05",
+          "status": "UNVERIFIED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "Parties may be represented by advocates and solicitors in the State Courts, and individuals may also act in person."
+        }
+      ]
+    },
+    {
+      "id": "dc",
+      "name": "District Court",
+      "shortName": "DC",
+      "system": "State Courts",
+      "summary": "Civil claims up to S$250,000, or up to S$500,000 for road accident and industrial accident injury claims.",
+      "learnMore": "The District Court has the in personam jurisdiction of the General Division of the High Court for claims within the District Court limit. Unlike the MC, it can hear claims that are not for money (for example, a claim about property whose value is within the limit). It cannot hear passing off actions. If a claim is above the limit, the claimant can abandon the excess (s 22) or the parties can agree by signed memorandum that the DC hears it anyway (s 23).",
+      "rules": [
+        {
+          "id": "dc.limit.default",
+          "title": "District Court limit",
+          "value": 250000,
+          "unit": "SGD",
+          "source": { "instrument": "State Courts Act 1970; State Courts (Variation of District Court Limit) Order", "provision": "s 2 (\"District Court limit\"), s 19(4); Order para 2", "url": "https://sso.agc.gov.sg/Act/SCA1970?WholeDoc=1#pr19-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "The District Court cannot hear a claim where the amount claimed, or the value of the subject matter, exceeds S$250,000."
+        },
+        {
+          "id": "dc.limit.rtaIndustrial",
+          "title": "Higher limit for road accident and industrial accident injury claims",
+          "value": 500000,
+          "unit": "SGD",
+          "source": { "instrument": "State Courts jurisdiction (judiciary.gov.sg)", "provision": "judiciary.gov.sg: 'What is a civil case'; media release, 1 Dec 2016 increase", "url": "https://www.judiciary.gov.sg/who-we-are/what-is-civil-case" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "For claims arising from road accidents and personal injury claims from industrial accidents, the District Court can hear claims of up to S$500,000.",
+          "caveats": ["The statutory instrument that sets this figure has not yet been located on SSO. Confirm it before relying on this rule."]
+        },
+        {
+          "id": "dc.limit.rtaIndustrial.natures",
+          "title": "Claim types that get the higher District Court limit",
+          "value": ["pi_road", "pi_industrial", "road_accident_damage"],
+          "unit": "list",
+          "source": { "instrument": "State Courts jurisdiction (judiciary.gov.sg)", "provision": "judiciary.gov.sg: 'What is a civil case'", "url": "https://www.judiciary.gov.sg/who-we-are/what-is-civil-case" },
+          "lastVerified": "2026-11-05",
+          "status": "UNVERIFIED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "The judiciary describes the higher limit as covering claims for road accidents and personal injuries from industrial accidents.",
+          "caveats": ["Whether property-damage-only road accident claims fall within the higher limit should be confirmed against the statutory instrument."]
+        },
+        {
+          "id": "dc.excluded.passingOff",
+          "title": "No jurisdiction over passing off",
+          "value": ["passing_off"],
+          "unit": "list",
+          "source": { "instrument": "State Courts Act 1970", "provision": "s 19(3)(ca)", "url": "https://sso.agc.gov.sg/Act/SCA1970?WholeDoc=1#pr19-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "The District Court cannot hear an action in passing off. These go to the General Division of the High Court."
+        },
+        {
+          "id": "dc.excluded.family",
+          "title": "Family matters belong to the Family Justice Courts",
+          "value": ["family"],
+          "unit": "list",
+          "source": { "instrument": "State Courts Act 1970", "provision": "s 19(3)(c)", "url": "https://sso.agc.gov.sg/Act/SCA1970?WholeDoc=1#pr19-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "Jurisdiction vested exclusively in a Family Court is excluded."
+        },
+        {
+          "id": "dc.abandonExcess",
+          "title": "Abandoning the excess to stay in the DC",
+          "value": true,
+          "unit": "boolean",
+          "source": { "instrument": "State Courts Act 1970", "provision": "s 22", "url": "https://sso.agc.gov.sg/Act/SCA1970?WholeDoc=1#pr22-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "The claimant may abandon the amount above the District Court limit. The judgment is then a full discharge of all demands for that cause of action, so the excess is lost permanently."
+        },
+        {
+          "id": "dc.consent",
+          "title": "Jurisdiction by signed memorandum",
+          "value": true,
+          "unit": "boolean",
+          "source": { "instrument": "State Courts Act 1970", "provision": "s 23", "url": "https://sso.agc.gov.sg/Act/SCA1970?WholeDoc=1#pr23-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "If the parties agree by a memorandum signed by them or their solicitors, the District Court can hear the action even though the amount claimed exceeds the District Court limit."
+        },
+        {
+          "id": "dc.lawyers",
+          "title": "Lawyers may act",
+          "value": true,
+          "unit": "boolean",
+          "source": { "instrument": "Legal Profession Act 1966", "provision": "Right of audience of advocates and solicitors (section not yet confirmed)", "url": "https://sso.agc.gov.sg/Act/LPA1966" },
+          "lastVerified": "2026-11-05",
+          "status": "UNVERIFIED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "Parties may be represented by advocates and solicitors in the State Courts, and individuals may also act in person."
+        }
+      ]
+    },
+    {
+      "id": "gd",
+      "name": "General Division of the High Court",
+      "shortName": "GD",
+      "system": "Supreme Court",
+      "summary": "Civil claims above the District Court limit, and matters outside the State Courts' jurisdiction.",
+      "learnMore": "The General Division of the High Court has no upper monetary limit. Claims above the District Court limit start here unless the parties agree otherwise or the claimant abandons the excess. It also hears matters the State Courts cannot, such as passing off actions.",
+      "rules": [
+        {
+          "id": "gd.limit.default",
+          "title": "No upper monetary limit",
+          "value": null,
+          "unit": "SGD",
+          "source": { "instrument": "judiciary.gov.sg", "provision": "'What is a civil case' (High Court: no limit)", "url": "https://www.judiciary.gov.sg/who-we-are/what-is-civil-case" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "The General Division of the High Court can hear civil claims of any amount."
+        },
+        {
+          "id": "gd.passingOff",
+          "title": "Passing off actions",
+          "value": ["passing_off"],
+          "unit": "list",
+          "source": { "instrument": "State Courts Act 1970", "provision": "s 19(3)(ca) and s 52(1A)(aa) (exclusion from the State Courts)", "url": "https://sso.agc.gov.sg/Act/SCA1970?WholeDoc=1#pr19-" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "Because the State Courts cannot hear passing off, these actions start in the General Division of the High Court."
+        },
+        {
+          "id": "gd.lawyers",
+          "title": "Lawyers may act",
+          "value": true,
+          "unit": "boolean",
+          "source": { "instrument": "Legal Profession Act 1966", "provision": "Right of audience of advocates and solicitors (section not yet confirmed)", "url": "https://sso.agc.gov.sg/Act/LPA1966" },
+          "lastVerified": "2026-11-05",
+          "status": "UNVERIFIED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "Parties may be represented by advocates and solicitors, and individuals may also act in person.",
+          "caveats": ["Whether a company may act without a lawyer is not covered here. Check the Rules of Court 2021."]
+        }
+      ]
+    },
+    {
+      "id": "fjc",
+      "name": "Family Justice Courts",
+      "shortName": "FJC",
+      "system": "Family Justice Courts",
+      "summary": "Divorce, maintenance, custody, family violence and other family matters. Signpost only.",
+      "learnMore": "Family matters are heard in the Family Justice Courts, which include the Family Courts, the Youth Courts and the Family Division of the High Court. This app does not work through family-court jurisdiction in detail. It only points you there.",
+      "rules": [
+        {
+          "id": "fjc.claimTypes",
+          "title": "Family matters",
+          "value": ["family"],
+          "unit": "list",
+          "source": { "instrument": "judiciary.gov.sg", "provision": "'About Singapore Courts': the Family Justice Courts hear family cases", "url": "https://www.judiciary.gov.sg/who-we-are/about-singapore-courts" },
+          "lastVerified": "2026-11-05",
+          "status": "SOURCE_CHECKED",
+          "checkedBy": "Claude",
+          "verifiedBy": null,
+          "explanation": "The Family Justice Courts hear family cases and selected criminal cases involving youth offenders."
+        }
+      ]
+    }
+  ]
+}
