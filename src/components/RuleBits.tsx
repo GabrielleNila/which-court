@@ -27,7 +27,7 @@ export function StatusBadge({ status, verifiedBy }: { status: RuleStatus; verifi
   return (
     <span
       title={s.title}
-      className={`inline-flex items-center gap-1 rounded-full border px-2 py-0.5 text-[0.7rem] font-bold tracking-wide whitespace-nowrap ${s.cls}`}
+      className={`inline-flex items-center gap-1 rounded border px-1.5 py-0.5 text-[0.68rem] font-semibold tracking-wide whitespace-nowrap ${s.cls}`}
     >
       <span aria-hidden="true">{s.icon}</span>
       {s.label}
@@ -42,9 +42,8 @@ export function SourceCite({ rule, compact = false }: { rule: Rule; compact?: bo
   return (
     <span className="inline-flex flex-wrap items-center gap-x-2 gap-y-1 text-xs text-ink-soft">
       <span>
-        📖{" "}
         {source.url ? (
-          <a href={source.url} target="_blank" rel="noopener noreferrer" className="underline decoration-lavender-deep underline-offset-2 hover:text-plum">
+          <a href={source.url} target="_blank" rel="noopener noreferrer" className="underline decoration-navy-line underline-offset-2 hover:text-navy">
             {source.instrument}, {source.provision}
           </a>
         ) : (
@@ -62,8 +61,8 @@ export function SourceCite({ rule, compact = false }: { rule: Rule; compact?: bo
 /** Expandable plain-English panel for law students. */
 export function LearnMore({ title = "Learn more", children }: { title?: string; children: React.ReactNode }) {
   return (
-    <details className="group mt-2 rounded-2xl bg-lavender/50 px-4 py-3 text-sm">
-      <summary className="flex items-center gap-2 font-semibold text-plum">
+    <details className="group mt-2 rounded-md bg-navy-soft/50 px-4 py-3 text-sm">
+      <summary className="flex items-center gap-2 font-semibold text-navy">
         <span className="transition-transform group-open:rotate-90" aria-hidden="true">▸</span>
         {title}
       </summary>

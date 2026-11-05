@@ -1,98 +1,108 @@
 @import "tailwindcss";
 
-/* Pastel palette. Text colours are kept dark enough to read in sunlight. */
+/* Formal palette: ivory paper, navy, burgundy and a muted gold. */
 :root {
-  --cream: #fff9f4;
-  --blush: #ffd6e0;
-  --blush-deep: #f7a8bd;
-  --lavender: #e4dcff;
-  --lavender-deep: #b9a8f5;
-  --mint: #d3f3e6;
-  --mint-deep: #8fd9bb;
-  --butter: #fff1c2;
-  --ink: #3b2f4a;
-  --ink-soft: #6b5f7a;
-  --berry: #b8326a;
-  --plum: #5b45b0;
-  --line: #eadff0;
-  --danger-bg: #ffe1e1;
-  --danger-ink: #9b1c1c;
-  --amber-bg: #fff0c9;
-  --amber-ink: #7a4b00;
-  --ok-bg: #d8f5e7;
-  --ok-ink: #135c3c;
+  --paper: #f6f4ef;
+  --surface: #ffffff;
+  --ink: #1b2230;
+  --ink-soft: #4a5363;
+  --line: #dcd8cf;
+  --navy: #1f3a5f;
+  --navy-soft: #e9eef5;
+  --navy-line: #9aaec6;
+  --rose: #7a1f2b;
+  --rose-soft: #f5eaeb;
+  --rose-line: #c49aa0;
+  --gold: #7c6221;
+  --gold-soft: #f3eedf;
+  --gold-line: #bfa66a;
+  --danger-bg: #fbe9e9;
+  --danger-ink: #8f1d1d;
+  --amber-bg: #fbf1dc;
+  --amber-ink: #6e4a06;
+  --ok-bg: #e4f2ea;
+  --ok-ink: #1d5a3a;
 }
 
 @theme inline {
-  --color-cream: var(--cream);
-  --color-blush: var(--blush);
-  --color-blush-deep: var(--blush-deep);
-  --color-lavender: var(--lavender);
-  --color-lavender-deep: var(--lavender-deep);
-  --color-mint: var(--mint);
-  --color-mint-deep: var(--mint-deep);
-  --color-butter: var(--butter);
+  --color-paper: var(--paper);
+  --color-surface: var(--surface);
   --color-ink: var(--ink);
   --color-ink-soft: var(--ink-soft);
-  --color-berry: var(--berry);
-  --color-plum: var(--plum);
   --color-line: var(--line);
+  --color-navy: var(--navy);
+  --color-navy-soft: var(--navy-soft);
+  --color-navy-line: var(--navy-line);
+  --color-rose: var(--rose);
+  --color-rose-soft: var(--rose-soft);
+  --color-rose-line: var(--rose-line);
+  --color-gold: var(--gold);
+  --color-gold-soft: var(--gold-soft);
+  --color-gold-line: var(--gold-line);
   --color-danger-bg: var(--danger-bg);
   --color-danger-ink: var(--danger-ink);
   --color-amber-bg: var(--amber-bg);
   --color-amber-ink: var(--amber-ink);
   --color-ok-bg: var(--ok-bg);
   --color-ok-ink: var(--ok-ink);
-  --font-sans: "Nunito Variable", ui-rounded, "Segoe UI", system-ui, sans-serif;
-  --font-display: "Fredoka Variable", ui-rounded, "Segoe UI", system-ui, sans-serif;
+  --font-sans: "Inter Variable", "Segoe UI", system-ui, sans-serif;
+  --font-display: "Source Serif 4 Variable", Georgia, "Times New Roman", serif;
 }
 
 html {
-  background: var(--cream);
+  background: var(--paper);
 }
 
 body {
-  background:
-    radial-gradient(1200px 500px at 10% -10%, #ffe6ee 0%, transparent 60%),
-    radial-gradient(900px 500px at 110% 0%, #ece6ff 0%, transparent 55%),
-    var(--cream);
+  background: var(--paper);
   color: var(--ink);
   font-family: var(--font-sans);
 }
 
+h1,
+h2,
+h3 {
+  letter-spacing: -0.01em;
+}
+
 .card {
-  background: #ffffffd9;
-  border: 1.5px solid var(--line);
-  border-radius: 1.5rem;
-  box-shadow: 0 6px 24px -12px #b9a8f566;
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: 0.5rem;
+  box-shadow: 0 1px 2px rgb(27 34 48 / 0.05);
 }
 
 .field {
   width: 100%;
-  border: 1.5px solid var(--line);
-  border-radius: 1rem;
-  background: #fff;
-  padding: 0.7rem 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 0.375rem;
+  background: var(--surface);
+  padding: 0.65rem 0.8rem;
   font-size: 1rem;
   color: var(--ink);
 }
 .field:focus {
-  outline: 3px solid var(--lavender);
-  border-color: var(--lavender-deep);
+  outline: 2px solid var(--navy-line);
+  outline-offset: 1px;
+  border-color: var(--navy);
 }
 
 .chip {
-  border: 1.5px solid var(--line);
-  border-radius: 999px;
-  padding: 0.45rem 0.9rem;
-  background: #fff;
-  font-size: 0.9rem;
+  border: 1px solid var(--line);
+  border-radius: 0.375rem;
+  padding: 0.45rem 0.85rem;
+  background: var(--surface);
+  font-size: 0.875rem;
+  color: var(--ink-soft);
   cursor: pointer;
 }
+.chip:hover {
+  border-color: var(--navy-line);
+}
 .chip[aria-pressed="true"] {
-  background: var(--lavender);
-  border-color: var(--lavender-deep);
-  color: var(--plum);
+  background: var(--navy);
+  border-color: var(--navy);
+  color: #fff;
   font-weight: 600;
 }
 

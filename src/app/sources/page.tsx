@@ -26,7 +26,7 @@ export default function SourcesPage() {
   return (
     <div className="space-y-6">
       <header className="card p-6">
-        <h1 className="font-display text-3xl font-semibold text-plum">Sources &amp; last verified</h1>
+        <h1 className="font-display text-3xl font-semibold text-navy">Sources &amp; last verified</h1>
         <p className="mt-2 text-ink-soft">
           Every rule the app uses, read straight from the files in <code>/rules</code>. To change a rule,
           edit its JSON file and open a pull request, so the GitHub history records who changed what and why.
@@ -44,7 +44,7 @@ export default function SourcesPage() {
 
       {groups.map((g) => (
         <section key={g} className="card overflow-hidden">
-          <h2 className="bg-lavender/60 px-5 py-3 font-display text-xl font-semibold text-plum">{g}</h2>
+          <h2 className="bg-navy-soft/60 px-5 py-3 font-display text-xl font-semibold text-navy">{g}</h2>
           <ul className="divide-y divide-line">
             {rules
               .filter((r) => r.group === g)
@@ -61,7 +61,7 @@ export default function SourcesPage() {
                     <dt className="font-semibold">Source</dt>
                     <dd>
                       {r.source.url ? (
-                        <a className="underline decoration-lavender-deep" href={r.source.url} target="_blank" rel="noopener noreferrer">
+                        <a className="underline decoration-navy-line" href={r.source.url} target="_blank" rel="noopener noreferrer">
                           {r.source.instrument}, {r.source.provision}
                         </a>
                       ) : (

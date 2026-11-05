@@ -17,7 +17,7 @@ import {
 import { forum, maybeRule, rule } from "@/lib/rules";
 import { formatDate, todaySG } from "@/lib/dates/calendar";
 import { LearnMore, SourceCite, StatusBadge } from "@/components/RuleBits";
-import { Mascot } from "@/components/Mascot";
+import { Emblem } from "@/components/Emblem";
 
 function Chips<T extends string>({
   value,
@@ -185,8 +185,8 @@ export function ForumFinder() {
       <div className="space-y-5" aria-live="polite">
         {!result ? (
           <div className="card flex flex-col items-center gap-3 px-6 py-12 text-center">
-            <Mascot size={100} />
-            <p className="font-display text-xl text-plum">Enter a claim amount to begin</p>
+            <Emblem size={56} className="text-navy-line" />
+            <p className="font-display text-xl text-navy">Enter a claim amount to begin</p>
             <p className="text-sm text-ink-soft">Results update as you type.</p>
           </div>
         ) : (
@@ -203,14 +203,14 @@ function ForumCard({ option, result, primary }: { option: ForumOption; result: F
   const fee = result.fees.find((x) => x.forumId === f.id);
   const bars = result.timeBars.filter((t) => t.forumId === f.id);
   return (
-    <article className={`card p-5 ${primary ? "border-mint-deep bg-mint/40" : ""}`}>
+    <article className={`card p-5 ${primary ? "border-l-4 border-l-navy" : ""}`}>
       <div className="flex flex-wrap items-center gap-2">
-        <span className={`rounded-full px-2.5 py-0.5 text-xs font-bold ${primary ? "bg-mint-deep text-ink" : "bg-lavender text-plum"}`}>
+        <span className={`rounded px-2 py-0.5 text-[0.7rem] font-semibold uppercase tracking-wider ${primary ? "bg-navy text-white" : "bg-navy-soft text-navy"}`}>
           {primary ? "Likely forum" : "Also open"}
         </span>
         <span className="text-xs text-ink-soft">{f.system}</span>
         {option.conditional && (
-          <span className="rounded-full bg-amber-bg px-2.5 py-0.5 text-xs font-bold text-amber-ink">Only if…</span>
+          <span className="rounded bg-amber-bg px-2 py-0.5 text-[0.7rem] font-semibold uppercase tracking-wider text-amber-ink">Only if…</span>
         )}
       </div>
       <h3 className={`mt-2 font-display font-semibold text-ink ${primary ? "text-3xl" : "text-xl"}`}>
@@ -219,7 +219,7 @@ function ForumCard({ option, result, primary }: { option: ForumOption; result: F
       <p className="mt-1 text-ink-soft">{option.basis}</p>
 
       {option.conditions.length > 0 && (
-        <ul className="mt-3 space-y-1 rounded-2xl bg-amber-bg/70 p-3 text-sm text-amber-ink">
+        <ul className="mt-3 space-y-1 rounded-md bg-amber-bg/70 p-3 text-sm text-amber-ink">
           {option.conditions.map((c) => <li key={c}>⚠ {c}</li>)}
         </ul>
       )}
@@ -279,7 +279,7 @@ const OUTCOME: Record<StepOutcome, { icon: string; cls: string }> = {
   yes: { icon: "✓", cls: "bg-ok-bg text-ok-ink" },
   no: { icon: "✕", cls: "bg-danger-bg text-danger-ink" },
   warn: { icon: "!", cls: "bg-amber-bg text-amber-ink" },
-  info: { icon: "i", cls: "bg-lavender text-plum" },
+  info: { icon: "i", cls: "bg-navy-soft text-navy" },
 };
 
 function Results({ result, amount }: { result: ForumResult; amount: number }) {
@@ -288,7 +288,7 @@ function Results({ result, amount }: { result: ForumResult; amount: number }) {
   return (
     <>
       {unverifiedUsed.length > 0 && (
-        <div className="rounded-2xl border border-danger-ink/30 bg-danger-bg px-4 py-3 text-sm text-danger-ink">
+        <div className="rounded-md border border-danger-ink/30 bg-danger-bg px-4 py-3 text-sm text-danger-ink">
           <strong>⚠ This result relies on {unverifiedUsed.length} UNVERIFIED rule{unverifiedUsed.length > 1 ? "s" : ""}:</strong>{" "}
           {unverifiedUsed.map((r) => r.title).join("; ")}. Check these against the source before relying on them.
         </div>
@@ -302,7 +302,7 @@ function Results({ result, amount }: { result: ForumResult; amount: number }) {
 
       {result.alternatives.length > 0 && (
         <section className="space-y-3">
-          <h2 className="font-display text-xl font-semibold text-plum">Also open</h2>
+          <h2 className="font-display text-xl font-semibold text-navy">Also open</h2>
           {result.alternatives.map((a) => (
             <ForumCard key={a.forumId + a.basis} option={a} result={result} />
           ))}
@@ -310,8 +310,8 @@ function Results({ result, amount }: { result: ForumResult; amount: number }) {
       )}
 
       {result.excessOptions.length > 0 && (
-        <section className="card border-blush-deep p-5">
-          <h2 className="font-display text-xl font-semibold text-berry">Abandon the excess?</h2>
+        <section className="card border-rose-line p-5">
+          <h2 className="font-display text-xl font-semibold text-rose">Abandon the excess?</h2>
           <p className="mt-1 text-sm text-ink-soft">
             Your claim is a little over a lower forum&apos;s limit. You could give up the excess to stay in that forum.
           </p>
@@ -329,7 +329,7 @@ function Results({ result, amount }: { result: ForumResult; amount: number }) {
                   <tr key={e.forumId} className="border-t border-line">
                     <td className="py-2 pr-3 font-semibold">{forum(e.forumId).shortName}</td>
                     <td className="py-2 pr-3">{sgd(e.limit)}</td>
-                    <td className="py-2 font-bold text-berry">
+                    <td className="py-2 font-bold text-rose">
                       {sgd(e.excess)} <span className="font-normal text-ink-soft">({((e.excess / amount) * 100).toFixed(1)}%)</span>
                     </td>
                   </tr>
@@ -337,7 +337,7 @@ function Results({ result, amount }: { result: ForumResult; amount: number }) {
               </tbody>
             </table>
           </div>
-          <p className="mt-3 rounded-2xl bg-blush/60 p-3 text-sm font-semibold text-berry">
+          <p className="mt-3 rounded-md bg-rose-soft/60 p-3 text-sm font-semibold text-rose">
             ⚠ The abandoned amount is lost permanently. You cannot sue for it later in any court.
           </p>
           <div className="mt-2 flex flex-col gap-1">
@@ -354,7 +354,7 @@ function Results({ result, amount }: { result: ForumResult; amount: number }) {
           : result.limitation.status === "soon" ? "border-amber-ink/30 bg-amber-bg/50" : ""
         }`}
       >
-        <h2 className="font-display text-xl font-semibold text-plum">Limitation check</h2>
+        <h2 className="font-display text-xl font-semibold text-navy">Limitation check</h2>
         <p className="mt-1 text-sm">{result.limitation.text}</p>
         {result.limitation.ruleId && (
           <>
@@ -372,7 +372,7 @@ function Results({ result, amount }: { result: ForumResult; amount: number }) {
       </section>
 
       <section className="card p-5">
-        <h2 className="font-display text-xl font-semibold text-plum">Step-by-step reasoning</h2>
+        <h2 className="font-display text-xl font-semibold text-navy">Step-by-step reasoning</h2>
         <ol className="mt-3 space-y-3">
           {result.steps.map((s, i) => (
             <li key={i} className="flex gap-3">
@@ -381,7 +381,7 @@ function Results({ result, amount }: { result: ForumResult; amount: number }) {
               </span>
               <div>
                 <p className="text-sm">
-                  <span className="mr-1 rounded-md bg-lavender/70 px-1.5 py-0.5 text-[0.7rem] font-bold text-plum">
+                  <span className="mr-1 rounded-md bg-navy-soft/70 px-1.5 py-0.5 text-[0.7rem] font-bold text-navy">
                     {forum(s.forumId).shortName}
                   </span>
                   {s.text}
@@ -396,19 +396,19 @@ function Results({ result, amount }: { result: ForumResult; amount: number }) {
       </section>
 
       <section className="card p-5 text-sm">
-        <h2 className="font-display text-xl font-semibold text-plum">Rules this result used</h2>
+        <h2 className="font-display text-xl font-semibold text-navy">Rules this result used</h2>
         <ul className="mt-2 space-y-2">
           {result.ruleIds.map((id) => {
             const r = rule(id);
             return (
               <li key={id} className="flex flex-wrap items-center gap-2">
                 <StatusBadge status={r.status} verifiedBy={r.verifiedBy} />
-                <a href={`/sources#${id}`} className="font-semibold underline decoration-lavender-deep">{r.title}</a>
+                <a href={`/sources#${id}`} className="font-semibold underline decoration-navy-line">{r.title}</a>
               </li>
             );
           })}
         </ul>
-        <p className="mt-4 rounded-2xl bg-blush/50 p-3 text-xs text-berry">
+        <p className="mt-4 rounded-md bg-rose-soft/50 p-3 text-xs text-rose">
           Guidance only. These results come from the rule files as last verified. Always verify against the
           current legislation and rules before acting. Not legal advice.
         </p>
